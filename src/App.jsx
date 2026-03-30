@@ -7,6 +7,18 @@ const timelineData = [
     category: "History",
     description:
       "The Anglo-Saxons begin invading and settling in Britain. This becomes a major foundation for later English language and culture.",
+    characteristics: [
+      "Early Anglo-Saxon migration",
+      "Beginning of major cultural change in Britain",
+      "Foundation for Old English society",
+    ],
+  },
+  {
+    year: "449",
+    title: "Anglo-Saxons begin invading Britain",
+    category: "History",
+    description:
+      "The Anglo-Saxons begin invading and settling in Britain. This becomes a major foundation for later English language and culture.",
   },
   {
     year: "597",
@@ -14,6 +26,11 @@ const timelineData = [
     category: "History",
     description:
       "Christian missionaries arrive in Kent, and Christianity begins to spread more widely in Anglo-Saxon England.",
+    characteristics: [
+      "Expansion of Christianity",
+      "Religious transformation of England",
+      "Growth of literacy and monastic culture",
+    ],
   },
   {
     year: "673",
@@ -21,6 +38,11 @@ const timelineData = [
     category: "Literature",
     description:
       "Bede becomes one of the most important scholars and historians of early English Christianity and learning.",
+    characteristics: [
+      "Monastic scholarship",
+      "Early English historiography",
+      "Religious and intellectual authority",
+    ],
   },
   {
     year: "750",
@@ -28,6 +50,11 @@ const timelineData = [
     category: "Literature",
     description:
       "Beowulf stands as one of the most important works of Old English literature and heroic tradition.",
+    characteristics: [
+      "Heroic epic tradition",
+      "Old English poetic culture",
+      "Warrior ethos and fame",
+    ],
   },
   {
     year: "871",
@@ -35,6 +62,11 @@ const timelineData = [
     category: "History",
     description:
       "Alfred becomes a major defender of Anglo-Saxon England and a promoter of learning and Christian order.",
+    characteristics: [
+      "Royal leadership",
+      "Defense against Viking threat",
+      "Promotion of education and faith",
+    ],
   },
   {
     year: "1066",
@@ -42,6 +74,11 @@ const timelineData = [
     category: "History",
     description:
       "William the Conqueror defeats King Harold. This event transforms English politics, culture, and language.",
+    characteristics: [
+      "Political reordering of England",
+      "Norman cultural influence",
+      "Long-term linguistic change",
+    ],
   },
   {
     year: "1215",
@@ -49,6 +86,11 @@ const timelineData = [
     category: "History",
     description:
       "The Magna Carta becomes a lasting symbol of the rule of law and limits on royal power.",
+    characteristics: [
+      "Limit on monarchy",
+      "Legal tradition",
+      "Symbol of constitutional development",
+    ],
   },
   {
     year: "1375",
@@ -56,6 +98,11 @@ const timelineData = [
     category: "Literature",
     description:
       "A major Middle English Arthurian poem exploring chivalry, testing, temptation, and honor.",
+    characteristics: [
+      "Arthurian romance",
+      "Moral testing",
+      "Courtly and symbolic narrative",
+    ],
   },
   {
     year: "1387",
@@ -63,6 +110,11 @@ const timelineData = [
     category: "Literature",
     description:
       "Chaucer's work becomes one of the greatest achievements of Middle English literature.",
+    characteristics: [
+      "Frame narrative structure",
+      "Social diversity of characters",
+      "Middle English literary mastery",
+    ],
   },
   {
     year: "1485",
@@ -70,6 +122,11 @@ const timelineData = [
     category: "Literature",
     description:
       "William Caxton prints Thomas Malory's Le Morte d'Arthur, helping establish the Arthurian tradition in English print culture.",
+    characteristics: [
+      "Arthurian legend in print",
+      "Transition from manuscript to print culture",
+      "Rise, glory, and fall of Camelot",
+    ],
   },
 ];
 
@@ -423,6 +480,42 @@ export default function App() {
 
                   <div
                     style={{
+                      marginTop: "26px",
+                      padding: isMobile ? "18px" : "20px 22px",
+                      borderRadius: "20px",
+                      border: "1px solid rgba(146,111,58,0.18)",
+                      background: "rgba(252,246,234,0.88)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "13px",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                        color: "#8c6a36",
+                        marginBottom: "12px",
+                        fontWeight: 700,
+                      }}
+                    >
+                      Characteristics
+                    </div>
+                    <ul
+                      style={{
+                        margin: 0,
+                        paddingLeft: "22px",
+                        color: "#5a472a",
+                        lineHeight: 1.9,
+                        fontSize: isMobile ? "15px" : "17px",
+                      }}
+                    >
+                      {selectedItem.characteristics.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div
+                    style={{
                       marginTop: "28px",
                       padding: isMobile ? "18px" : "20px 22px",
                       borderRadius: "20px",
@@ -456,6 +549,20 @@ export default function App() {
               </div>
             </section>
           </div>
+
+          <footer
+            style={{
+              padding: "18px 24px 24px",
+              textAlign: "center",
+              borderTop: "1px solid rgba(140,106,54,0.18)",
+              background: "rgba(255, 248, 234, 0.72)",
+              color: "#7a6238",
+              fontSize: "14px",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Developed by Esther Jung
+          </footer>
         </div>
       </div>
     </div>
