@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import {
-  Crown,
   Church,
   ScrollText,
   Sword,
@@ -16,6 +15,7 @@ const timelineData = [
     era: "400s",
     icon: Castle,
     tone: "Origins and early Britain",
+    eraImage: "/images/king-arthur.jpg",
     summary:
       "The legendary background of Arthurian Britain begins to take shape during the age of Anglo-Saxon migration and early post-Roman instability.",
     details: [
@@ -76,6 +76,7 @@ const timelineData = [
     era: "600s",
     icon: Church,
     tone: "Christian foundations and early learning",
+    eraImage: "/images/augustine-of-canterbury.jpg",
     summary:
       "This era helps establish the religious and intellectual foundations that shaped later English literature and medieval views of kingship, virtue, and history.",
     details: [
@@ -143,6 +144,7 @@ const timelineData = [
     era: "800s",
     icon: Shield,
     tone: "Kingship, chronicles, and defense",
+    eraImage: "/images/alfred-the-great.jpg",
     summary:
       "The age of Alfred and the Anglo-Saxon Chronicle reinforces themes of heroic leadership, literacy, and national memory that later echo in Arthurian tradition.",
     details: [
@@ -215,8 +217,9 @@ const timelineData = [
   },
   {
     era: "1000s",
-    icon: Crown,
+    icon: Shield,
     tone: "Conquest, reform, and transformation",
+    eraImage: "/images/william-the-conqueror.jpg",
     summary:
       "This period changes England politically, linguistically, and culturally. The Norman Conquest especially sets the stage for the later development of Arthurian romance.",
     details: [
@@ -319,6 +322,7 @@ const timelineData = [
     era: "1200s",
     icon: Sword,
     tone: "Romance, law, and crisis",
+    eraImage: "/images/gawain-poet.jpg",
     summary:
       "This era develops the literary and political forms that feed directly into the world of knights, quests, courts, and national trauma later seen in Malory.",
     details: [
@@ -413,7 +417,7 @@ const timelineData = [
         role: "Poet",
         image: "/images/geoffrey-chaucer.jpg",
         description:
-          "Chaucer raised the prestige of English literature and helped prepare the way for major English prose and poetry in the late Middle Ages.",
+          "Chaucer helped prepare the way for major English prose and poetry in the late Middle Ages.",
       },
     ],
   },
@@ -421,6 +425,7 @@ const timelineData = [
     era: "1400s",
     icon: ScrollText,
     tone: "Malory, print, and literary legacy",
+    eraImage: "/images/william-caxton.jpg",
     summary:
       "In this final stage, Arthurian tradition is gathered, shaped, and printed into one of the most influential works in English literary history.",
     details: [
@@ -508,9 +513,9 @@ const timelineData = [
 ];
 
 const categoryColors = {
-  "Literary Milestones": "#d6b04d",
-  "Historical Context": "#9a7a52",
-  "World Culture and Events": "#9b5a49",
+  "Literary Milestones": "#b38b2f",
+  "Historical Context": "#7d6343",
+  "World Culture and Events": "#874d3f",
 };
 
 function Modal({ person, onClose }) {
@@ -520,8 +525,9 @@ function Modal({ person, onClose }) {
     <div style={styles.modalOverlay} onClick={onClose}>
       <div style={styles.modalCard} onClick={(e) => e.stopPropagation()}>
         <button style={styles.closeBtn} onClick={onClose}>
-          <X size={20} />
+          <X size={18} />
         </button>
+
         <div style={styles.modalGrid}>
           <div style={styles.modalImageWrap}>
             <img src={person.image} alt={person.name} style={styles.modalImage} />
@@ -555,10 +561,8 @@ export default function App() {
             <Sparkles size={14} />
             <span>Medieval Literary Experience</span>
           </div>
-          <h1 style={styles.title}>A Timeline of Le Morte d'Arthur</h1>
-          <p style={styles.subtitle}>
-            Connecting Literature, History, and Culture
-          </p>
+          <h1 style={styles.title}>A Timeline of Le Morte d&apos;Arthur</h1>
+          <p style={styles.subtitle}>Connecting Literature, History, and Culture</p>
           <p style={styles.author}>12C Esther Jung</p>
         </header>
 
@@ -568,6 +572,7 @@ export default function App() {
             {timelineData.map((era) => {
               const Icon = era.icon;
               const active = selectedEra.era === era.era;
+
               return (
                 <button
                   key={era.era}
@@ -581,7 +586,7 @@ export default function App() {
                   }}
                 >
                   <div style={styles.eraIconWrap}>
-                    <Icon size={24} />
+                    <Icon size={22} />
                   </div>
                   <div style={styles.eraLabel}>{era.era}</div>
                   <div style={styles.eraTone}>{era.tone}</div>
@@ -593,6 +598,12 @@ export default function App() {
 
         <section style={styles.contentGrid}>
           <div style={styles.leftPanel}>
+            <img
+              src={selectedEra.eraImage}
+              alt={selectedEra.era}
+              style={styles.eraBanner}
+            />
+
             <h2 style={styles.panelTitle}>{selectedEra.era}</h2>
             <p style={styles.panelSummary}>{selectedEra.summary}</p>
 
@@ -652,7 +663,7 @@ export default function App() {
                   style={{
                     ...styles.eventChip,
                     backgroundColor:
-                      categoryColors[selectedEvent.category] || "#9a7a52",
+                      categoryColors[selectedEvent.category] || "#7d6343",
                   }}
                 >
                   {selectedEvent.category}
@@ -677,19 +688,20 @@ const styles = {
   page: {
     minHeight: "100vh",
     background:
-      "linear-gradient(180deg, rgba(250,245,234,0.96), rgba(243,234,216,0.94), rgba(239,227,207,0.95))",
-    color: "#4f4232",
-    fontFamily: "'Georgia', 'Times New Roman', serif",
+      "linear-gradient(180deg, rgba(214,196,163,0.94), rgba(188,165,129,0.95), rgba(160,136,101,0.97))",
+    color: "#37291d",
+    fontFamily: "'Cormorant Garamond', 'Times New Roman', serif",
     position: "relative",
     overflow: "hidden",
   },
   overlay: {
     position: "absolute",
     inset: 0,
-    backgroundImage: "url('/images/parchment-bg.jpg')",
+    backgroundImage:
+      "linear-gradient(rgba(45,32,19,0.18), rgba(45,32,19,0.28)), url('/images/parchment-bg.jpg')",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    opacity: 0.18,
+    opacity: 0.55,
     pointerEvents: "none",
   },
   container: {
@@ -702,7 +714,7 @@ const styles = {
     position: "absolute",
     right: 18,
     top: 18,
-    width: 88,
+    width: 92,
     opacity: 0.18,
     pointerEvents: "none",
   },
@@ -715,31 +727,34 @@ const styles = {
     alignItems: "center",
     gap: 8,
     padding: "8px 16px",
-    border: "1px solid rgba(168,129,69,0.35)",
+    border: "1px solid rgba(120,90,47,0.35)",
     borderRadius: 999,
-    color: "#9b7632",
-    background: "rgba(255, 250, 240, 0.9)",
+    color: "#7b5824",
+    background: "rgba(250, 241, 223, 0.8)",
     fontSize: 12,
-    letterSpacing: "0.22em",
+    letterSpacing: "0.24em",
     textTransform: "uppercase",
     marginBottom: 18,
-    boxShadow: "0 4px 14px rgba(130, 106, 67, 0.08)",
+    boxShadow: "0 4px 14px rgba(64, 49, 31, 0.10)",
   },
   title: {
-    fontSize: "clamp(2.2rem, 5vw, 4.5rem)",
-    color: "#5c4731",
+    fontFamily: "'Cinzel', 'Times New Roman', serif",
+    fontSize: "clamp(2.3rem, 5vw, 4.8rem)",
+    color: "#412f20",
     margin: 0,
+    letterSpacing: "0.03em",
   },
   subtitle: {
     marginTop: 12,
-    fontSize: 18,
-    color: "#7a6753",
+    fontSize: 22,
+    color: "#5e4936",
   },
   author: {
     marginTop: 10,
-    color: "#a07b2f",
-    letterSpacing: "0.18em",
+    color: "#7e5f27",
+    letterSpacing: "0.20em",
     fontSize: 14,
+    textTransform: "uppercase",
   },
   timelineSection: {
     position: "relative",
@@ -749,10 +764,10 @@ const styles = {
     position: "absolute",
     left: 0,
     right: 0,
-    top: 52,
+    top: 56,
     height: 3,
     background:
-      "linear-gradient(90deg, transparent, rgba(196,159,94,0.95), transparent)",
+      "linear-gradient(90deg, transparent, rgba(128,94,40,0.88), transparent)",
   },
   eraRow: {
     display: "grid",
@@ -762,42 +777,44 @@ const styles = {
     zIndex: 2,
   },
   eraButton: {
-    border: "1px solid rgba(180,154,115,0.45)",
+    border: "1px solid rgba(126,97,62,0.42)",
     borderRadius: 24,
     padding: 18,
-    background: "rgba(255, 251, 245, 0.96)",
-    color: "#5b4632",
+    background: "rgba(245, 234, 214, 0.76)",
+    color: "#49372a",
     cursor: "pointer",
     textAlign: "center",
     transition: "all 0.2s ease",
-    boxShadow: "0 8px 24px rgba(120, 102, 72, 0.10)",
+    boxShadow: "0 8px 24px rgba(71, 53, 34, 0.10)",
+    backdropFilter: "blur(2px)",
   },
   eraButtonActive: {
-    border: "1px solid #c8a35f",
+    border: "1px solid #9b7330",
     background:
-      "linear-gradient(180deg, rgba(247,236,210,0.98), rgba(239,227,203,0.98))",
+      "linear-gradient(180deg, rgba(228,208,172,0.96), rgba(211,188,150,0.96))",
     transform: "translateY(-2px)",
-    boxShadow: "0 10px 24px rgba(157, 128, 77, 0.18)",
+    boxShadow: "0 10px 24px rgba(92, 67, 36, 0.18)",
   },
   eraIconWrap: {
-    width: 52,
-    height: 52,
+    width: 54,
+    height: 54,
     borderRadius: "50%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     margin: "0 auto 10px",
-    background: "rgba(247, 238, 221, 0.98)",
-    border: "1px solid rgba(194,157,91,0.45)",
-    color: "#8d6a2b",
+    background: "rgba(236, 221, 193, 0.95)",
+    border: "1px solid rgba(146,109,49,0.42)",
+    color: "#795820",
   },
   eraLabel: {
+    fontFamily: "'Cinzel', serif",
     fontSize: 24,
     marginBottom: 4,
   },
   eraTone: {
-    fontSize: 12,
-    color: "#846f58",
+    fontSize: 13,
+    color: "#685340",
     lineHeight: 1.5,
   },
   contentGrid: {
@@ -806,33 +823,43 @@ const styles = {
     gap: 24,
   },
   leftPanel: {
-    background: "rgba(255, 251, 244, 0.96)",
-    border: "1px solid rgba(180, 154, 115, 0.40)",
+    background: "rgba(248, 240, 224, 0.82)",
+    border: "1px solid rgba(126,97,62,0.32)",
     borderRadius: 28,
     padding: 24,
-    boxShadow: "0 12px 32px rgba(120, 102, 72, 0.12)",
-    backdropFilter: "blur(2px)",
+    boxShadow: "0 12px 32px rgba(65, 48, 28, 0.14)",
+    backdropFilter: "blur(3px)",
   },
   rightPanel: {
-    background: "rgba(255, 251, 244, 0.96)",
-    border: "1px solid rgba(180, 154, 115, 0.40)",
+    background: "rgba(248, 240, 224, 0.82)",
+    border: "1px solid rgba(126,97,62,0.32)",
     borderRadius: 28,
     padding: 24,
-    boxShadow: "0 12px 32px rgba(120, 102, 72, 0.12)",
-    backdropFilter: "blur(2px)",
+    boxShadow: "0 12px 32px rgba(65, 48, 28, 0.14)",
+    backdropFilter: "blur(3px)",
+  },
+  eraBanner: {
+    width: "100%",
+    height: 220,
+    objectFit: "cover",
+    borderRadius: 18,
+    marginBottom: 18,
+    border: "1px solid rgba(126,97,62,0.25)",
+    boxShadow: "0 8px 22px rgba(66, 49, 28, 0.12)",
   },
   panelTitle: {
+    fontFamily: "'Cinzel', serif",
     fontSize: 34,
-    color: "#5c4731",
+    color: "#433021",
     margin: 0,
     marginBottom: 12,
   },
   panelSummary: {
-    color: "#6f5d4a",
-    lineHeight: 1.9,
-    fontSize: 16,
-    background: "rgba(250, 244, 232, 0.95)",
-    border: "1px solid rgba(194,157,91,0.20)",
+    color: "#5d4837",
+    lineHeight: 1.85,
+    fontSize: 20,
+    background: "rgba(242, 232, 213, 0.72)",
+    border: "1px solid rgba(146,109,49,0.16)",
     borderRadius: 18,
     padding: 16,
   },
@@ -840,11 +867,12 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: 8,
-    color: "#a07b2f",
+    color: "#8a6728",
     fontSize: 13,
     letterSpacing: "0.24em",
     textTransform: "uppercase",
     marginBottom: 12,
+    fontFamily: "'Cinzel', serif",
   },
   peopleList: {
     display: "flex",
@@ -857,33 +885,35 @@ const styles = {
     alignItems: "center",
     gap: 16,
     width: "100%",
-    background: "rgba(252, 248, 239, 0.98)",
-    border: "1px solid rgba(180,154,115,0.38)",
+    background: "rgba(244, 234, 216, 0.88)",
+    border: "1px solid rgba(126,97,62,0.26)",
     borderRadius: 18,
     padding: 16,
     cursor: "pointer",
-    color: "#4f4232",
+    color: "#3f3124",
     textAlign: "left",
   },
   personName: {
-    fontSize: 22,
-    color: "#5c4731",
+    fontSize: 26,
+    color: "#4a3525",
+    fontFamily: "'Cinzel', serif",
   },
   personRole: {
     marginTop: 4,
-    fontSize: 14,
-    color: "#7f6b55",
+    fontSize: 16,
+    color: "#6f5944",
   },
   viewTag: {
-    border: "1px solid rgba(194,157,91,0.40)",
+    border: "1px solid rgba(146,109,49,0.35)",
     borderRadius: 999,
     padding: "6px 12px",
-    color: "#a07b2f",
+    color: "#8a6728",
     fontSize: 12,
     textTransform: "uppercase",
-    letterSpacing: "0.15em",
+    letterSpacing: "0.16em",
     whiteSpace: "nowrap",
-    background: "#fffaf0",
+    background: "rgba(255,248,235,0.7)",
+    fontFamily: "'Cinzel', serif",
   },
   eventsGrid: {
     display: "grid",
@@ -901,41 +931,43 @@ const styles = {
   eventButton: {
     width: "100%",
     textAlign: "left",
-    border: "1px solid rgba(180,154,115,0.38)",
+    border: "1px solid rgba(126,97,62,0.26)",
     borderRadius: 18,
     padding: 16,
-    background: "rgba(252, 248, 239, 0.98)",
-    color: "#4f4232",
+    background: "rgba(244, 234, 216, 0.88)",
+    color: "#3f3124",
     cursor: "pointer",
   },
   eventButtonActive: {
-    border: "1px solid #c8a35f",
+    border: "1px solid #9b7330",
     background:
-      "linear-gradient(180deg, rgba(247,236,210,0.98), rgba(239,227,203,0.98))",
+      "linear-gradient(180deg, rgba(228,208,172,0.96), rgba(211,188,150,0.96))",
   },
   eventCategory: {
     fontSize: 11,
-    color: "#a07b2f",
+    color: "#8a6728",
     textTransform: "uppercase",
     letterSpacing: "0.22em",
+    fontFamily: "'Cinzel', serif",
   },
   eventYear: {
-    fontSize: 30,
-    color: "#5c4731",
+    fontSize: 34,
+    color: "#493426",
     marginTop: 8,
+    fontFamily: "'Cinzel', serif",
   },
   eventTitle: {
-    fontSize: 14,
-    color: "#705d49",
+    fontSize: 17,
+    color: "#654f3d",
     marginTop: 6,
-    lineHeight: 1.6,
+    lineHeight: 1.5,
   },
   eventDetail: {
     borderRadius: 26,
     padding: 24,
     background:
-      "linear-gradient(180deg, rgba(252,247,238,0.98), rgba(243,236,224,0.98))",
-    border: "1px solid rgba(194,157,91,0.24)",
+      "linear-gradient(180deg, rgba(246,238,223,0.92), rgba(230,217,193,0.92))",
+    border: "1px solid rgba(146,109,49,0.18)",
   },
   eventChip: {
     display: "inline-block",
@@ -946,38 +978,42 @@ const styles = {
     padding: "8px 14px",
     borderRadius: 999,
     marginBottom: 18,
+    fontFamily: "'Cinzel', serif",
   },
   detailYear: {
-    fontSize: 56,
-    color: "#5c4731",
+    fontSize: 60,
+    color: "#453122",
     margin: 0,
+    fontFamily: "'Cinzel', serif",
   },
   detailTitle: {
-    fontSize: 34,
-    color: "#4f4232",
+    fontSize: 36,
+    color: "#3f2e20",
     marginTop: 10,
     marginBottom: 12,
-    lineHeight: 1.25,
+    lineHeight: 1.2,
+    fontFamily: "'Cinzel', serif",
   },
   detailDesc: {
-    color: "#6f5d4a",
-    fontSize: 17,
-    lineHeight: 1.9,
+    color: "#5b4736",
+    fontSize: 22,
+    lineHeight: 1.8,
   },
   footer: {
     marginTop: 34,
     paddingTop: 18,
-    borderTop: "1px solid rgba(180,154,115,0.38)",
+    borderTop: "1px solid rgba(126,97,62,0.28)",
     textAlign: "center",
-    color: "#a07b2f",
+    color: "#7d5f29",
     letterSpacing: "0.22em",
     fontSize: 14,
     textTransform: "uppercase",
+    fontFamily: "'Cinzel', serif",
   },
   modalOverlay: {
     position: "fixed",
     inset: 0,
-    background: "rgba(64, 49, 31, 0.35)",
+    background: "rgba(41, 29, 17, 0.42)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -987,12 +1023,12 @@ const styles = {
   modalCard: {
     width: "min(920px, 100%)",
     background:
-      "linear-gradient(180deg, rgba(255,251,244,0.99), rgba(246,238,226,0.99))",
-    border: "1px solid rgba(180,154,115,0.35)",
+      "linear-gradient(180deg, rgba(247,239,224,0.98), rgba(229,215,191,0.98))",
+    border: "1px solid rgba(126,97,62,0.26)",
     borderRadius: 28,
     position: "relative",
     overflow: "hidden",
-    boxShadow: "0 20px 50px rgba(120, 102, 72, 0.18)",
+    boxShadow: "0 20px 50px rgba(70, 53, 31, 0.22)",
   },
   closeBtn: {
     position: "absolute",
@@ -1001,9 +1037,9 @@ const styles = {
     width: 40,
     height: 40,
     borderRadius: "50%",
-    border: "1px solid rgba(180,154,115,0.35)",
-    background: "rgba(250,244,232,0.98)",
-    color: "#6a5238",
+    border: "1px solid rgba(126,97,62,0.25)",
+    background: "rgba(248,239,222,0.96)",
+    color: "#5a4332",
     cursor: "pointer",
     zIndex: 2,
   },
@@ -1013,7 +1049,7 @@ const styles = {
   },
   modalImageWrap: {
     minHeight: 360,
-    background: "#f2e9da",
+    background: "#d4c2a4",
   },
   modalImage: {
     width: "100%",
@@ -1026,38 +1062,28 @@ const styles = {
   },
   modalTitle: {
     margin: 0,
-    fontSize: 38,
-    color: "#5c4731",
+    fontSize: 40,
+    color: "#483324",
+    fontFamily: "'Cinzel', serif",
   },
   modalRole: {
     marginTop: 10,
-    color: "#a07b2f",
+    color: "#816226",
     letterSpacing: "0.18em",
     textTransform: "uppercase",
     fontSize: 13,
+    fontFamily: "'Cinzel', serif",
   },
   modalDesc: {
     marginTop: 24,
-    fontSize: 17,
-    lineHeight: 1.95,
-    color: "#6f5d4a",
+    fontSize: 22,
+    lineHeight: 1.85,
+    color: "#5b4736",
   },
 };
 
 const mediaStyle = document.createElement("style");
 mediaStyle.innerHTML = `
-  @media (max-width: 1100px) {
-    .timeline-responsive-grid {
-      grid-template-columns: 1fr !important;
-    }
-  }
-
-  @media (max-width: 980px) {
-    body {
-      overflow-x: hidden;
-    }
-  }
-
   @media (max-width: 900px) {
     div[style*="grid-template-columns: 1fr 1.6fr"] {
       grid-template-columns: 1fr !important;
@@ -1069,6 +1095,12 @@ mediaStyle.innerHTML = `
 
     div[style*="grid-template-columns: 1fr 1.2fr"] {
       grid-template-columns: 1fr !important;
+    }
+  }
+
+  @media (max-width: 980px) {
+    body {
+      overflow-x: hidden;
     }
   }
 `;
