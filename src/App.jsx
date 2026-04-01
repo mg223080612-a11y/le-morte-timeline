@@ -88,6 +88,9 @@ const timelineData = [
       "Foundation for Old English society",
     ],
     people: [],
+    sceneImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Sutton_Hoo_helmet_2016.jpg/640px-Sutton_Hoo_helmet_2016.jpg",
+    sceneLabel: "Anglo-Saxon culture",
   },
   {
     year: "597",
@@ -101,6 +104,9 @@ const timelineData = [
       "Growth of literacy and monastic culture",
     ],
     people: [],
+    sceneImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Canterbury_Cathedral_-_Portal_Nave_Cross_Spire.jpg/640px-Canterbury_Cathedral_-_Portal_Nave_Cross_Spire.jpg",
+    sceneLabel: "Christian England",
   },
   {
     year: "673",
@@ -114,6 +120,9 @@ const timelineData = [
       "Religious and intellectual authority",
     ],
     people: ["Bede the Venerable"],
+    sceneImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/St_Cuthbert_Gospel_%28British_Library_Add_MS_89000%29.jpg/640px-St_Cuthbert_Gospel_%28British_Library_Add_MS_89000%29.jpg",
+    sceneLabel: "Monastic manuscript culture",
   },
   {
     year: "750",
@@ -127,6 +136,9 @@ const timelineData = [
       "Warrior ethos and fame",
     ],
     people: [],
+    sceneImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Beowulf_Cotton_MS_Vitellius_A_XV_f._132r.jpg/640px-Beowulf_Cotton_MS_Vitellius_A_XV_f._132r.jpg",
+    sceneLabel: "Beowulf manuscript",
   },
   {
     year: "871",
@@ -140,6 +152,9 @@ const timelineData = [
       "Promotion of education and faith",
     ],
     people: ["Alfred the Great"],
+    sceneImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Statue_of_Alfred_the_Great%2C_Wantage.jpg/640px-Statue_of_Alfred_the_Great%2C_Wantage.jpg",
+    sceneLabel: "Alfredian kingship",
   },
   {
     year: "1066",
@@ -153,6 +168,9 @@ const timelineData = [
       "Long-term linguistic change",
     ],
     people: ["William the Conqueror"],
+    sceneImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Bayeux_Tapestry_scene57_Harold_death.jpg/640px-Bayeux_Tapestry_scene57_Harold_death.jpg",
+    sceneLabel: "Norman Conquest imagery",
   },
   {
     year: "1215",
@@ -166,6 +184,9 @@ const timelineData = [
       "Symbol of constitutional development",
     ],
     people: ["King John"],
+    sceneImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Magna_Carta_%28British_Library_Cotton_MS_Augustus_II.106%29.jpg/640px-Magna_Carta_%28British_Library_Cotton_MS_Augustus_II.106%29.jpg",
+    sceneLabel: "Magna Carta",
   },
   {
     year: "1375",
@@ -179,6 +200,9 @@ const timelineData = [
       "Courtly and symbolic narrative",
     ],
     people: ["Sir Gawain"],
+    sceneImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Gawain_Green_Knight_14th_cotton_nero.jpg/640px-Gawain_Green_Knight_14th_cotton_nero.jpg",
+    sceneLabel: "Arthurian manuscript art",
   },
   {
     year: "1387",
@@ -192,6 +216,9 @@ const timelineData = [
       "Middle English literary mastery",
     ],
     people: ["Chaucer"],
+    sceneImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Canterbury_Tales_2.jpg/640px-Canterbury_Tales_2.jpg",
+    sceneLabel: "Canterbury Tales pilgrims",
   },
   {
     year: "1485",
@@ -205,6 +232,9 @@ const timelineData = [
       "Rise, glory, and fall of Camelot",
     ],
     people: ["William Caxton", "Thomas Malory", "Arthur"],
+    sceneImage:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Caxton_Morte_dArthur.jpg/640px-Caxton_Morte_dArthur.jpg",
+    sceneLabel: "Le Morte d'Arthur in print",
   },
 ];
 
@@ -217,7 +247,7 @@ const pageStyle = {
 };
 
 const wrapStyle = {
-  maxWidth: "1280px",
+  maxWidth: "1380px",
   margin: "0 auto",
   padding: "40px 20px 56px",
 };
@@ -226,8 +256,9 @@ const frameStyle = {
   position: "relative",
   border: "8px double #8c6a36",
   borderRadius: "28px",
-  background: "rgba(255, 250, 240, 0.88)",
-  boxShadow: "0 24px 70px rgba(75, 52, 22, 0.16), inset 0 0 0 2px rgba(255,255,255,0.55)",
+  background: "rgba(255, 250, 240, 0.9)",
+  boxShadow:
+    "0 24px 70px rgba(75, 52, 22, 0.16), inset 0 0 0 2px rgba(255,255,255,0.55)",
   overflow: "hidden",
 };
 
@@ -249,91 +280,6 @@ const cornerBase = {
   opacity: 0.7,
 };
 
-const heroStyle = {
-  position: "relative",
-  padding: "44px 32px 28px",
-  background:
-    "linear-gradient(180deg, rgba(120,78,28,0.12) 0%, rgba(255,248,232,0.6) 100%)",
-  borderBottom: "1px solid rgba(140,106,54,0.28)",
-  textAlign: "center",
-};
-
-const ornamentRow = {
-  display: "flex",
-  alignItems: "center",
-  gap: "16px",
-  justifyContent: "center",
-  marginBottom: "12px",
-  color: "#8c6a36",
-};
-
-const ornamentLine = {
-  width: "90px",
-  height: "1px",
-  background: "linear-gradient(90deg, transparent, #9c7b48, transparent)",
-};
-
-const badgeStyle = {
-  display: "inline-block",
-  marginTop: "14px",
-  padding: "6px 14px",
-  borderRadius: "999px",
-  border: "1px solid #c9ae7b",
-  background: "rgba(255, 246, 225, 0.95)",
-  color: "#7a5c2c",
-  fontSize: "13px",
-  letterSpacing: "0.08em",
-  textTransform: "uppercase",
-};
-
-const layoutStyle = {
-  display: "grid",
-  gridTemplateColumns: "320px 1fr",
-  gap: "0",
-};
-
-const sidebarStyle = {
-  position: "relative",
-  padding: "34px 24px 34px 34px",
-  background:
-    "linear-gradient(180deg, rgba(243,231,208,0.95) 0%, rgba(250,244,232,0.95) 100%)",
-  borderRight: "1px solid rgba(140,106,54,0.22)",
-};
-
-const sideTitleStyle = {
-  margin: "0 0 18px 0",
-  fontSize: "24px",
-  color: "#4b3519",
-};
-
-const sideTextStyle = {
-  margin: "0 0 28px 0",
-  color: "#6a5638",
-  lineHeight: 1.7,
-  fontSize: "15px",
-};
-
-const timelineShellStyle = {
-  position: "relative",
-  paddingLeft: "74px",
-};
-
-const verticalLineStyle = {
-  position: "absolute",
-  left: "38px",
-  top: "10px",
-  bottom: "10px",
-  width: "4px",
-  borderRadius: "999px",
-  background: "linear-gradient(180deg, #c6a566 0%, #8f6d37 50%, #c6a566 100%)",
-  boxShadow: "0 0 0 4px rgba(198,165,102,0.12)",
-};
-
-const rightStyle = {
-  padding: "32px",
-  background: "linear-gradient(180deg, rgba(255,252,246,0.92) 0%, rgba(248,241,226,0.92) 100%)",
-};
-
 function getCategoryStyle(category) {
   if (category === "History") {
     return {
@@ -351,7 +297,7 @@ function getCategoryStyle(category) {
 
 function useResponsive() {
   if (typeof window === "undefined") return false;
-  return window.innerWidth < 900;
+  return window.innerWidth < 980;
 }
 
 function InlinePeople({ people, onOpen }) {
@@ -399,7 +345,7 @@ function CharacterModal({ person, onClose, isMobile }) {
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          width: "min(920px, 100%)",
+          width: "min(980px, 100%)",
           borderRadius: "28px",
           overflow: "hidden",
           border: "4px double #8c6a36",
@@ -409,29 +355,61 @@ function CharacterModal({ person, onClose, isMobile }) {
           gridTemplateColumns: isMobile ? "1fr" : "340px 1fr",
         }}
       >
-        <div style={{ background: "#e8dcc2", minHeight: isMobile ? "240px" : "100%" }}>
+        <div
+          style={{
+            background: "#e8dcc2",
+            minHeight: isMobile ? "240px" : "100%",
+          }}
+        >
           <img
             src={person.image}
             alt={person.name}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
           />
         </div>
         <div style={{ padding: isMobile ? "22px" : "30px 30px 26px" }}>
-          <div style={{ fontSize: isMobile ? "30px" : "38px", color: "#3b2810", fontWeight: 700, lineHeight: 1.15 }}>
+          <div
+            style={{
+              fontSize: isMobile ? "30px" : "38px",
+              color: "#3b2810",
+              fontWeight: 700,
+              lineHeight: 1.15,
+            }}
+          >
             {person.name}
           </div>
-          <div style={{ marginTop: "8px", color: "#8b6734", fontStyle: "italic", fontSize: isMobile ? "17px" : "19px" }}>
+          <div
+            style={{
+              marginTop: "8px",
+              color: "#8b6734",
+              fontStyle: "italic",
+              fontSize: isMobile ? "17px" : "19px",
+            }}
+          >
             {person.subtitle}
           </div>
           <div
             style={{
               height: "1px",
               width: "100%",
-              background: "linear-gradient(90deg, transparent, rgba(140,106,54,0.38), transparent)",
+              background:
+                "linear-gradient(90deg, transparent, rgba(140,106,54,0.38), transparent)",
               margin: "18px 0 22px",
             }}
           />
-          <p style={{ margin: 0, color: "#5a472a", fontSize: isMobile ? "16px" : "18px", lineHeight: 1.9 }}>
+          <p
+            style={{
+              margin: 0,
+              color: "#5a472a",
+              fontSize: isMobile ? "16px" : "18px",
+              lineHeight: 1.9,
+            }}
+          >
             {person.description}
           </p>
           <button
@@ -457,7 +435,9 @@ function CharacterModal({ person, onClose, isMobile }) {
 }
 
 export default function App() {
-  const [selectedItem, setSelectedItem] = useState(timelineData[timelineData.length - 1]);
+  const [selectedItem, setSelectedItem] = useState(
+    timelineData[timelineData.length - 1]
+  );
   const [selectedPerson, setSelectedPerson] = useState(null);
   const isMobile = useResponsive();
 
@@ -507,11 +487,43 @@ export default function App() {
             }}
           />
 
-          <section style={heroStyle}>
-            <div style={ornamentRow}>
-              <div style={ornamentLine} />
+          <section
+            style={{
+              position: "relative",
+              padding: "44px 32px 28px",
+              background:
+                "linear-gradient(180deg, rgba(120,78,28,0.12) 0%, rgba(255,248,232,0.6) 100%)",
+              borderBottom: "1px solid rgba(140,106,54,0.28)",
+              textAlign: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "16px",
+                justifyContent: "center",
+                marginBottom: "12px",
+                color: "#8c6a36",
+              }}
+            >
+              <div
+                style={{
+                  width: "90px",
+                  height: "1px",
+                  background:
+                    "linear-gradient(90deg, transparent, #9c7b48, transparent)",
+                }}
+              />
               <div style={{ fontSize: "20px" }}>✦</div>
-              <div style={ornamentLine} />
+              <div
+                style={{
+                  width: "90px",
+                  height: "1px",
+                  background:
+                    "linear-gradient(90deg, transparent, #9c7b48, transparent)",
+                }}
+              />
             </div>
             <h1
               style={{
@@ -522,7 +534,7 @@ export default function App() {
                 letterSpacing: "0.02em",
               }}
             >
-              A Medieval Timeline
+              A Medieval Horizontal Timeline
             </h1>
             <div
               style={{
@@ -532,92 +544,258 @@ export default function App() {
                 fontStyle: "italic",
               }}
             >
-              Click a year and uncover the story behind it
+              A vertical arrangement of years across a horizontal manuscript
+              gallery
             </div>
-            <div style={badgeStyle}>Literature · History · Arthurian World</div>
-          </section>
-
-          <div
-            style={{
-              ...layoutStyle,
-              gridTemplateColumns: isMobile ? "1fr" : layoutStyle.gridTemplateColumns,
-            }}
-          >
-            <aside
+            <div
               style={{
-                ...sidebarStyle,
-                borderRight: isMobile ? "none" : sidebarStyle.borderRight,
-                borderBottom: isMobile ? "1px solid rgba(140,106,54,0.22)" : "none",
+                display: "inline-block",
+                marginTop: "14px",
+                padding: "6px 14px",
+                borderRadius: "999px",
+                border: "1px solid #c9ae7b",
+                background: "rgba(255, 246, 225, 0.95)",
+                color: "#7a5c2c",
+                fontSize: "13px",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
               }}
             >
-              <h2 style={sideTitleStyle}>Years of Memory</h2>
-              <p style={sideTextStyle}>
-                This vertical timeline is designed like an illuminated manuscript. Each year opens an event from the literary and historical world leading toward <i>Le Morte d'Arthur</i>.
-              </p>
+              Literature · History · Arthurian World
+            </div>
+          </section>
 
-              <div style={timelineShellStyle}>
-                <div style={verticalLineStyle} />
-                {timelineData.map((item, index) => {
-                  const active = selectedItem.year === item.year;
-                  return (
-                    <div
-                      key={item.year}
-                      style={{
-                        position: "relative",
-                        marginBottom: index === timelineData.length - 1 ? 0 : "20px",
-                        minHeight: "72px",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <button
-                        onClick={() => setSelectedItem(item)}
-                        style={{
-                          width: active ? "74px" : "66px",
-                          height: active ? "74px" : "66px",
-                          borderRadius: "999px",
-                          border: active ? "3px solid #8d692f" : "2px solid #c9aa72",
-                          background: active
-                            ? "radial-gradient(circle at 30% 30%, #b48a46 0%, #7b5925 75%)"
-                            : "radial-gradient(circle at 30% 30%, #fffaf0 0%, #f0dfbe 100%)",
-                          color: active ? "#fff8eb" : "#7b5b28",
-                          fontSize: active ? "18px" : "16px",
-                          fontWeight: 700,
-                          cursor: "pointer",
-                          boxShadow: active
-                            ? "0 14px 28px rgba(98, 67, 28, 0.28)"
-                            : "0 8px 18px rgba(98, 67, 28, 0.12)",
-                          transition: "all 0.18s ease",
-                          position: "relative",
-                          zIndex: 2,
-                          letterSpacing: "0.02em",
-                        }}
-                      >
-                        {item.year}
-                      </button>
+          <section style={{ padding: isMobile ? "24px 18px 18px" : "32px 28px 24px" }}>
+            <div
+              style={{
+                marginBottom: "18px",
+                color: "#6a5638",
+                lineHeight: 1.75,
+                fontSize: isMobile ? "15px" : "16px",
+                textAlign: "center",
+              }}
+            >
+              Select a year on the manuscript line below. Each marker opens a
+              period image, event overview, characteristics, and related
+              historical or literary figures.
+            </div>
+
+            <div style={{ position: "relative", overflowX: "auto", paddingBottom: "10px" }}>
+              <div
+                style={{
+                  minWidth: isMobile ? "980px" : "1180px",
+                  padding: "18px 12px 8px",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "78px",
+                    left: "40px",
+                    right: "40px",
+                    height: "6px",
+                    borderRadius: "999px",
+                    background:
+                      "linear-gradient(90deg, #c6a566 0%, #8f6d37 50%, #c6a566 100%)",
+                    boxShadow: "0 0 0 6px rgba(198,165,102,0.10)",
+                  }}
+                />
+
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: `repeat(${timelineData.length}, minmax(96px, 1fr))`,
+                    gap: "16px",
+                    alignItems: "start",
+                    position: "relative",
+                    zIndex: 1,
+                  }}
+                >
+                  {timelineData.map((item, index) => {
+                    const active = selectedItem.year === item.year;
+                    const topCard = index % 2 === 0;
+
+                    return (
                       <div
+                        key={item.year}
                         style={{
-                          marginLeft: "16px",
-                          flex: 1,
-                          color: active ? "#4a3419" : "#7b6645",
-                          fontSize: "14px",
-                          lineHeight: 1.4,
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          minHeight: "210px",
                         }}
                       >
-                        {item.title}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </aside>
+                        <div
+                          style={{
+                            height: "64px",
+                            display: "flex",
+                            alignItems: topCard ? "flex-end" : "flex-start",
+                            justifyContent: "center",
+                            marginBottom: "10px",
+                            textAlign: "center",
+                            color: active ? "#4a3419" : "#7b6645",
+                            fontSize: "13px",
+                            lineHeight: 1.3,
+                            fontWeight: 600,
+                            maxWidth: "106px",
+                          }}
+                        >
+                          {topCard ? item.title : ""}
+                        </div>
 
-            <section style={rightStyle}>
+                        <button
+                          onClick={() => setSelectedItem(item)}
+                          style={{
+                            width: active ? "78px" : "68px",
+                            height: active ? "78px" : "68px",
+                            borderRadius: "999px",
+                            border: active
+                              ? "3px solid #8d692f"
+                              : "2px solid #c9aa72",
+                            background: active
+                              ? "radial-gradient(circle at 30% 30%, #b48a46 0%, #7b5925 75%)"
+                              : "radial-gradient(circle at 30% 30%, #fffaf0 0%, #f0dfbe 100%)",
+                            color: active ? "#fff8eb" : "#7b5b28",
+                            fontSize: active ? "18px" : "16px",
+                            fontWeight: 700,
+                            cursor: "pointer",
+                            boxShadow: active
+                              ? "0 14px 28px rgba(98, 67, 28, 0.28)"
+                              : "0 8px 18px rgba(98, 67, 28, 0.12)",
+                            transition: "all 0.18s ease",
+                            letterSpacing: "0.02em",
+                            position: "relative",
+                            zIndex: 2,
+                            flexShrink: 0,
+                          }}
+                        >
+                          {item.year}
+                        </button>
+
+                        <div
+                          style={{
+                            width: "2px",
+                            height: "48px",
+                            background: active
+                              ? "#8d692f"
+                              : "rgba(140,106,54,0.45)",
+                            margin: "10px 0",
+                          }}
+                        />
+
+                        <div
+                          style={{
+                            height: "64px",
+                            display: "flex",
+                            alignItems: topCard ? "flex-start" : "flex-end",
+                            justifyContent: "center",
+                            textAlign: "center",
+                            color: active ? "#4a3419" : "#7b6645",
+                            fontSize: "13px",
+                            lineHeight: 1.3,
+                            fontWeight: 600,
+                            maxWidth: "106px",
+                          }}
+                        >
+                          {!topCard ? item.title : ""}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section style={{ padding: isMobile ? "6px 18px 24px" : "8px 28px 28px" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: isMobile ? "1fr" : "420px 1fr",
+                gap: "24px",
+                alignItems: "stretch",
+              }}
+            >
               <div
                 style={{
                   border: "1px solid rgba(146,111,58,0.22)",
                   borderRadius: "26px",
-                  background: "linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(251,245,233,0.98) 100%)",
+                  overflow: "hidden",
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(247,238,220,0.96) 100%)",
+                  boxShadow: "0 16px 38px rgba(80, 57, 25, 0.10)",
+                }}
+              >
+                <div
+                  style={{
+                    position: "relative",
+                    minHeight: isMobile ? "260px" : "100%",
+                  }}
+                >
+                  <img
+                    src={selectedItem.sceneImage}
+                    alt={selectedItem.sceneLabel}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      minHeight: isMobile ? "260px" : "100%",
+                      objectFit: "cover",
+                      display: "block",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background:
+                        "linear-gradient(180deg, rgba(34,22,9,0.02) 0%, rgba(34,22,9,0.54) 100%)",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: "18px",
+                      right: "18px",
+                      bottom: "16px",
+                      padding: "12px 14px",
+                      borderRadius: "16px",
+                      background: "rgba(255, 248, 232, 0.82)",
+                      border: "1px solid rgba(140,106,54,0.20)",
+                      color: "#5a472a",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                        color: "#8c6a36",
+                        fontWeight: 700,
+                        marginBottom: "4px",
+                      }}
+                    >
+                      Period Image
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "16px",
+                        lineHeight: 1.5,
+                        fontWeight: 700,
+                      }}
+                    >
+                      {selectedItem.sceneLabel}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  border: "1px solid rgba(146,111,58,0.22)",
+                  borderRadius: "26px",
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(251,245,233,0.98) 100%)",
                   boxShadow: "0 16px 38px rgba(80, 57, 25, 0.10)",
                   overflow: "hidden",
                 }}
@@ -785,46 +963,17 @@ export default function App() {
                           color: "#5a472a",
                         }}
                       >
-                        <InlinePeople people={selectedItem.people} onOpen={setSelectedPerson} />
+                        <InlinePeople
+                          people={selectedItem.people}
+                          onOpen={setSelectedPerson}
+                        />
                       </div>
                     </div>
                   )}
-
-                  <div
-                    style={{
-                      marginTop: "28px",
-                      padding: isMobile ? "18px" : "20px 22px",
-                      borderRadius: "20px",
-                      border: "1px solid rgba(146,111,58,0.18)",
-                      background: "rgba(255,249,237,0.76)",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontSize: "13px",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.08em",
-                        color: "#8c6a36",
-                        marginBottom: "10px",
-                        fontWeight: 700,
-                      }}
-                    >
-                      Curator's Note
-                    </div>
-                    <div
-                      style={{
-                        fontSize: isMobile ? "15px" : "16px",
-                        lineHeight: 1.8,
-                        color: "#6a5638",
-                      }}
-                    >
-                      This design uses a parchment palette, gilded timeline markers, ornamental corners, and manuscript-like spacing so the timeline feels closer to a medieval exhibit than a modern dashboard.
-                    </div>
-                  </div>
                 </div>
               </div>
-            </section>
-          </div>
+            </div>
+          </section>
 
           <CharacterModal
             person={selectedPerson ? characters[selectedPerson] : null}
