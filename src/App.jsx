@@ -1,458 +1,536 @@
-import React, { useState, useEffect } from "react";
-
-const characters = {
-  "Bede the Venerable": {
-    name: "Bede the Venerable",
-    subtitle: "Scholar, monk, and historian",
-    image: "/images/bede-the-venerable.jpg",
-    description:
-      "Bede was one of the foundational scholars of early English Christianity. He helped shape historical writing, religious learning, and the intellectual world of Anglo-Saxon England.",
-  },
-  "Alfred the Great": {
-    name: "Alfred the Great",
-    subtitle: "King of Wessex",
-    image: "/images/alfred-the-great.jpg",
-    description:
-      "Alfred the Great defended his kingdom against Viking threats and promoted education, literacy, and Christian order. He became one of the most admired rulers in early English history.",
-  },
-  "William the Conqueror": {
-    name: "William the Conqueror",
-    subtitle: "Norman king of England",
-    image: "/images/william-the-conqueror.jpg",
-    description:
-      "William the Conqueror transformed England after the Norman Conquest of 1066. His victory reshaped politics, law, language, and aristocratic culture.",
-  },
-  "King John": {
-    name: "King John",
-    subtitle: "King of England",
-    image: "/images/king-john.jpg",
-    description:
-      "King John is closely associated with the signing of Magna Carta in 1215. His reign became a turning point in debates over royal authority and legal restraint.",
-  },
-  "Sir Gawain": {
-    name: "Sir Gawain",
-    subtitle: "Knight of Arthurian romance",
-    image: "/images/sir-gawain.jpg",
-    description:
-      "Sir Gawain is one of the great knights of Arthurian tradition. In Sir Gawain and the Green Knight, he represents honor, testing, temptation, and moral struggle.",
-  },
-  Chaucer: {
-    name: "Geoffrey Chaucer",
-    subtitle: "Major poet of Middle English literature",
-    image: "/images/geoffrey-chaucer.jpg",
-    description:
-      "Geoffrey Chaucer is one of the central voices of Middle English literature. The Canterbury Tales presents a vivid range of characters, voices, and social settings.",
-  },
-  "William Caxton": {
-    name: "William Caxton",
-    subtitle: "England's first printer",
-    image: "/images/william-caxton.jpg",
-    description:
-      "William Caxton established the first printing press in England and played a decisive role in circulating English literature in print.",
-  },
-  "Thomas Malory": {
-    name: "Sir Thomas Malory",
-    subtitle: "Author of Le Morte d'Arthur",
-    image: "/images/thomas-malory.jpg",
-    description:
-      "Thomas Malory gathered and reshaped Arthurian legend into one influential English prose narrative, helping define the later image of King Arthur and Camelot.",
-  },
-  Arthur: {
-    name: "King Arthur",
-    subtitle: "Legendary ruler of Camelot",
-    image: "/images/arthur.jpg",
-    description:
-      "Arthur is the legendary king at the center of the Round Table tradition. He symbolizes royal authority, unity, and the tragic fall of an ideal kingdom.",
-  },
-};
+import React, { useMemo, useState } from "react";
+import {
+  Crown,
+  Church,
+  ScrollText,
+  Sword,
+  Castle,
+  Shield,
+  BookOpen,
+  Sparkles,
+  X,
+} from "lucide-react";
 
 const timelineData = [
   {
-    year: "449",
-    title: "Anglo-Saxons begin invading Britain",
-    category: "History",
-    description:
-      "The Anglo-Saxons begin invading and settling in Britain. This becomes a major foundation for later English language and culture.",
-    characteristics: [
-      "Early Anglo-Saxon migration",
-      "Beginning of major cultural change in Britain",
-      "Foundation for Old English society",
+    era: "400s",
+    icon: Castle,
+    tone: "Origins and early Britain",
+    summary:
+      "The legendary background of Arthurian Britain begins to take shape during the age of Anglo-Saxon migration and early post-Roman instability.",
+    details: [
+      {
+        year: "449",
+        title: "Anglo-Saxons begin invading Britain",
+        category: "Historical Context",
+        description:
+          "Traditional accounts mark this period as the beginning of major Anglo-Saxon settlement in Britain, helping form the fractured political world from which later Arthurian legend emerges.",
+      },
+      {
+        year: "500",
+        title: "A mathematician in India calculates the value of pi",
+        category: "World Culture and Events",
+        description:
+          "While Britain faced political upheaval, major intellectual developments were happening elsewhere. This broader world context reminds us that Arthurian legend belongs to a much wider human history.",
+      },
+      {
+        year: "527",
+        title: "Justinian becomes Byzantine emperor",
+        category: "World Culture and Events",
+        description:
+          "Justinian's reign symbolizes imperial ambition, legal order, and Christian statecraft in the Mediterranean world—an illuminating contrast to the unstable Britain of Arthurian memory.",
+      },
+      {
+        year: "597",
+        title: "Christian missionaries arrive in Kent",
+        category: "Historical Context",
+        description:
+          "Christianity begins spreading more deeply in Anglo-Saxon England. This matters for Arthurian literature because later retellings frame knighthood, kingship, sin, and honor through a Christian moral lens.",
+      },
     ],
-    people: [],
-    sceneImage: "/images/anglo-saxon-scene.jpg",
-    sceneLabel: "Anglo-Saxon culture",
+    people: [
+      {
+        name: "King Arthur",
+        role: "Legendary British king",
+        image: "/images/king-arthur.jpg",
+        description:
+          "Arthur stands at the center of the tradition later gathered by Malory. He represents ideal kingship, unity, and the tragic fall of a noble realm.",
+      },
+      {
+        name: "Vortigern",
+        role: "Legendary British ruler",
+        image: "/images/vortigern.jpg",
+        description:
+          "Vortigern is often linked to the arrival of the Saxons in Britain. In Arthurian background tradition, he symbolizes political weakness and disorder before Arthur's rise.",
+      },
+      {
+        name: "Ambrosius Aurelianus",
+        role: "Romano-British resistance leader",
+        image: "/images/ambrosius-aurelianus.jpg",
+        description:
+          "Ambrosius is sometimes treated as part of the historical background behind Arthurian tradition. He represents resistance against Saxon expansion.",
+      },
+    ],
   },
   {
-    year: "597",
-    title: "Christian missionaries arrive in Kent",
-    category: "History",
-    description:
-      "Christian missionaries arrive in Kent, and Christianity begins to spread more widely in Anglo-Saxon England.",
-    characteristics: [
-      "Expansion of Christianity",
-      "Religious transformation of England",
-      "Growth of literacy and monastic culture",
+    era: "600s",
+    icon: Church,
+    tone: "Christian foundations and early learning",
+    summary:
+      "This era helps establish the religious and intellectual foundations that shaped later English literature and medieval views of kingship, virtue, and history.",
+    details: [
+      {
+        year: "600",
+        title: "Block printing develops in China and Korea",
+        category: "World Culture and Events",
+        description:
+          "This innovation highlights the sophistication of East Asian culture and provides a striking global contrast to manuscript culture in medieval Europe.",
+      },
+      {
+        year: "630",
+        title: "Prophet Muhammad conquers Mecca",
+        category: "World Culture and Events",
+        description:
+          "A major turning point in world history, the unification of Mecca under Islam signals the growth of a civilization that would profoundly shape medieval Afro-Eurasian history.",
+      },
+      {
+        year: "664",
+        title: "The British Church unites with the Roman Catholic Church",
+        category: "Historical Context",
+        description:
+          "The Synod of Whitby aligned English Christianity more closely with Roman practice. This deepened the Latin Christian framework within which later medieval literature developed.",
+      },
+      {
+        year: "c. 673",
+        title: "Bede the Venerable is born",
+        category: "Literary Milestones",
+        description:
+          "Bede becomes one of the most influential early historians and scholars in English history, helping shape how the English understood their past.",
+      },
+      {
+        year: "c. 750",
+        title: "The surviving version of Beowulf is composed",
+        category: "Literary Milestones",
+        description:
+          "Beowulf reflects heroic values, loyalty, fame, mortality, and moral tension. These themes continue into Arthurian literature in transformed medieval forms.",
+      },
+      {
+        year: "795",
+        title: "Vikings begin raids on Anglo-Saxon kingdoms",
+        category: "Historical Context",
+        description:
+          "The Viking raids intensified anxiety about kingship, warfare, defense, and cultural survival—ideas that resonate strongly with later Arthurian imagination.",
+      },
     ],
-    people: [],
-    sceneImage: "/images/bede-scene.jpg",
-    sceneLabel: "Christian England",
+    people: [
+      {
+        name: "Bede",
+        role: "Historian and scholar",
+        image: "/images/bede.jpg",
+        description:
+          "Bede's historical writing helped define early English identity. He shaped the historical consciousness from which later British literary memory grew.",
+      },
+      {
+        name: "Augustine of Canterbury",
+        role: "Missionary and archbishop",
+        image: "/images/augustine-of-canterbury.jpg",
+        description:
+          "Augustine's mission helped establish Christianity in Anglo-Saxon England. The Christianization of Britain deeply influenced the ethical and symbolic world of later Arthurian romance.",
+      },
+    ],
   },
   {
-    year: "673",
-    title: "Bede the Venerable is born",
-    category: "Literature",
-    description:
-      "Bede becomes one of the most important scholars and historians of early English Christianity and learning.",
-    characteristics: [
-      "Monastic scholarship",
-      "Early English historiography",
-      "Religious and intellectual authority",
+    era: "800s",
+    icon: Shield,
+    tone: "Kingship, chronicles, and defense",
+    summary:
+      "The age of Alfred and the Anglo-Saxon Chronicle reinforces themes of heroic leadership, literacy, and national memory that later echo in Arthurian tradition.",
+    details: [
+      {
+        year: "800",
+        title: "Charlemagne is crowned Emperor of the Holy Roman Empire",
+        category: "World Culture and Events",
+        description:
+          "Charlemagne became a model of Christian rulership in medieval Europe. His imperial image helps us understand why later literature idealized kingship in heroic and sacred terms.",
+      },
+      {
+        year: "c. 800",
+        title: "Gunpowder is invented in China",
+        category: "World Culture and Events",
+        description:
+          "This invention points to major scientific and technological developments beyond Europe during the medieval period.",
+      },
+      {
+        year: "871",
+        title: "Alfred the Great becomes king of Wessex",
+        category: "Historical Context",
+        description:
+          "Alfred's rule became a model of wise and courageous kingship. He defended his kingdom, promoted learning, and helped preserve English culture.",
+      },
+      {
+        year: "880",
+        title: "Mayan civilization begins to decline",
+        category: "World Culture and Events",
+        description:
+          "This event broadens the timeline beyond Europe and reminds us that medieval history was globally diverse and interconnected in significance.",
+      },
+      {
+        year: "886",
+        title: "Alfred defeats the Danes and promotes Christianity",
+        category: "Historical Context",
+        description:
+          "Alfred's victories and reforms strengthened both royal authority and Christian learning, making him an important comparison point for later legendary rulers like Arthur.",
+      },
+      {
+        year: "892",
+        title: "The Anglo-Saxon Chronicle begins to be compiled",
+        category: "Literary Milestones",
+        description:
+          "The Chronicle preserved historical memory in written form. It reflects the growing importance of recording a people's story—something Arthurian writers would do in imaginative ways.",
+      },
+      {
+        year: "975",
+        title: "Anglo-Saxon poetry is collected in the Exeter Book",
+        category: "Literary Milestones",
+        description:
+          "The Exeter Book preserved a major body of Old English poetry and helped secure the literary inheritance that preceded Middle English romance.",
+      },
     ],
-    people: ["Bede the Venerable"],
-    sceneImage: "/images/bede-scene.jpg",
-    sceneLabel: "Monastic manuscript culture",
+    people: [
+      {
+        name: "Alfred the Great",
+        role: "King of Wessex",
+        image: "/images/alfred-the-great.jpg",
+        description:
+          "Alfred is remembered as a warrior, lawgiver, and promoter of learning. His example of kingship can be compared with Arthur's legendary role as protector and unifier.",
+      },
+      {
+        name: "Charlemagne",
+        role: "Emperor and cultural model of kingship",
+        image: "/images/charlemagne.jpg",
+        description:
+          "Charlemagne's legacy influenced medieval ideals of empire, Christian rule, and heroic leadership. He provides a continental parallel to Arthurian ideals.",
+      },
+    ],
   },
   {
-    year: "750",
-    title: "The surviving version of Beowulf is composed",
-    category: "Literature",
-    description:
-      "Beowulf stands as one of the most important works of Old English literature and heroic tradition.",
-    characteristics: [
-      "Heroic epic tradition",
-      "Old English poetic culture",
-      "Warrior ethos and fame",
+    era: "1000s",
+    icon: Crown,
+    tone: "Conquest, reform, and transformation",
+    summary:
+      "This period changes England politically, linguistically, and culturally. The Norman Conquest especially sets the stage for the later development of Arthurian romance.",
+    details: [
+      {
+        year: "c. 1000",
+        title: "The surviving manuscript of Beowulf is recorded by monks",
+        category: "Literary Milestones",
+        description:
+          "The recording of Beowulf helped preserve early heroic literature, which later English writers inherited in transformed ways.",
+      },
+      {
+        year: "1016",
+        title: "Canute becomes king of England",
+        category: "Historical Context",
+        description:
+          "Canute's reign shows how England was shaped by Scandinavian power as well as native tradition.",
+      },
+      {
+        year: "1054",
+        title: "The Christian Church splits into Eastern and Western branches",
+        category: "World Culture and Events",
+        description:
+          "The Great Schism divided Eastern Orthodoxy and Roman Catholicism, changing the religious map of medieval Christendom.",
+      },
+      {
+        year: "1066",
+        title: "Norman Conquest",
+        category: "Historical Context",
+        description:
+          "William the Conqueror defeats King Harold. This transformed English language, aristocratic culture, and literary development.",
+      },
+      {
+        year: "1086",
+        title: "The Domesday Book is completed",
+        category: "Literary Milestones",
+        description:
+          "This remarkable survey reflects Norman administrative power and the growing documentary culture of medieval England.",
+      },
+      {
+        year: "1095",
+        title: "The Crusades begin",
+        category: "World Culture and Events",
+        description:
+          "The Crusades shaped medieval concepts of warfare, pilgrimage, sanctity, and heroism, all of which influence later romance literature.",
+      },
+      {
+        year: "1170",
+        title: "Thomas Becket is murdered",
+        category: "Historical Context",
+        description:
+          "Becket's death dramatized the tension between royal power and church authority, a moral conflict central to medieval thought.",
+      },
+      {
+        year: "1171",
+        title: "Henry II declares himself lord of Ireland",
+        category: "Historical Context",
+        description:
+          "This strengthened English royal claims across the British Isles and reflects the expansion of monarchy and political ambition.",
+      },
+      {
+        year: "1192",
+        title: "The Japanese emperor adopts the title of shogun",
+        category: "World Culture and Events",
+        description:
+          "The rise of the shogunate reveals another form of warrior-based leadership in medieval world history.",
+      },
     ],
-    people: [],
-    sceneImage: "/images/beowulf-scene.jpg",
-    sceneLabel: "Beowulf manuscript",
+    people: [
+      {
+        name: "William the Conqueror",
+        role: "Norman king of England",
+        image: "/images/william-the-conqueror.jpg",
+        description:
+          "William's victory in 1066 transformed England. Norman French culture and literary forms helped shape the Arthurian romance tradition.",
+      },
+      {
+        name: "King Harold II",
+        role: "Last Anglo-Saxon king of England",
+        image: "/images/king-harold-ii.jpg",
+        description:
+          "Harold's defeat marks the end of Anglo-Saxon royal rule and contributes to the sense of lost kingdoms echoed in later legendary literature.",
+      },
+      {
+        name: "Thomas Becket",
+        role: "Archbishop of Canterbury",
+        image: "/images/thomas-becket.jpg",
+        description:
+          "Becket became a symbol of conscience, holiness, and resistance to royal overreach.",
+      },
+      {
+        name: "Henry II",
+        role: "King of England",
+        image: "/images/henry-ii.jpg",
+        description:
+          "Henry II expanded royal power and reshaped English governance, providing context for medieval ideas of justice, loyalty, and kingship.",
+      },
+    ],
   },
   {
-    year: "871",
-    title: "Alfred the Great becomes king of Wessex",
-    category: "History",
-    description:
-      "Alfred becomes a major defender of Anglo-Saxon England and a promoter of learning and Christian order.",
-    characteristics: [
-      "Royal leadership",
-      "Defense against Viking threat",
-      "Promotion of education and faith",
+    era: "1200s",
+    icon: Sword,
+    tone: "Romance, law, and crisis",
+    summary:
+      "This era develops the literary and political forms that feed directly into the world of knights, quests, courts, and national trauma later seen in Malory.",
+    details: [
+      {
+        year: "1206",
+        title: "Genghis Khan begins the Mongol conquest",
+        category: "World Culture and Events",
+        description:
+          "The Mongol expansion reshaped Asia and Europe through war, trade, and cross-cultural contact.",
+      },
+      {
+        year: "1215",
+        title: "King John signs the Magna Carta",
+        category: "Historical Context",
+        description:
+          "The Magna Carta became a landmark in the history of law, monarchy, and political limits.",
+      },
+      {
+        year: "1282",
+        title: "England conquers Wales",
+        category: "Historical Context",
+        description:
+          "Wales, long associated with Arthurian tradition, became more tightly controlled by the English crown.",
+      },
+      {
+        year: "1295",
+        title: "Model Parliament is formed under Edward I",
+        category: "Historical Context",
+        description:
+          "This marks a significant stage in representative governance in England.",
+      },
+      {
+        year: "c. 1300",
+        title: "The Renaissance begins in northern Italy",
+        category: "World Culture and Events",
+        description:
+          "The Renaissance would eventually transform European thought, art, language, and human self-understanding.",
+      },
+      {
+        year: "1337",
+        title: "The Hundred Years' War begins",
+        category: "Historical Context",
+        description:
+          "This long conflict sharpened ideas of national identity, warfare, and chivalry in England and France.",
+      },
+      {
+        year: "1347",
+        title: "The Black Death spreads across Europe",
+        category: "World Culture and Events",
+        description:
+          "The Black Death caused immense death and social upheaval, leaving deep marks on religion, literature, and the medieval worldview.",
+      },
+      {
+        year: "c. 1375",
+        title: "Sir Gawain and the Green Knight is composed",
+        category: "Literary Milestones",
+        description:
+          "This masterpiece of Arthurian literature explores honor, temptation, truth, and failure through the figure of Sir Gawain.",
+      },
+      {
+        year: "c. 1387",
+        title: "Geoffrey Chaucer begins The Canterbury Tales",
+        category: "Literary Milestones",
+        description:
+          "Chaucer helped establish English as a major literary language and enriched the cultural world from which Malory would later write.",
+      },
     ],
-    people: ["Alfred the Great"],
-    sceneImage: "/images/alfred-scene.jpg",
-    sceneLabel: "Alfredian kingship",
+    people: [
+      {
+        name: "King John",
+        role: "King of England",
+        image: "/images/king-john.jpg",
+        description:
+          "John is remembered in part through Magna Carta. His reign helps explain medieval concern with tyranny, legitimacy, and political order.",
+      },
+      {
+        name: "Edward I",
+        role: "King of England",
+        image: "/images/edward-i.jpg",
+        description:
+          "Edward I strengthened royal authority and expanded English power, especially in Wales.",
+      },
+      {
+        name: "The Gawain Poet",
+        role: "Anonymous Arthurian poet",
+        image: "/images/gawain-poet.jpg",
+        description:
+          "The anonymous poet of Sir Gawain and the Green Knight deepened Arthurian literature by showing that a knight can be noble and flawed at the same time.",
+      },
+      {
+        name: "Geoffrey Chaucer",
+        role: "Poet",
+        image: "/images/geoffrey-chaucer.jpg",
+        description:
+          "Chaucer raised the prestige of English literature and helped prepare the way for major English prose and poetry in the late Middle Ages.",
+      },
+    ],
   },
   {
-    year: "1066",
-    title: "Norman Conquest",
-    category: "History",
-    description:
-      "William the Conqueror defeats King Harold. This event transforms English politics, culture, and language.",
-    characteristics: [
-      "Political reordering of England",
-      "Norman cultural influence",
-      "Long-term linguistic change",
+    era: "1400s",
+    icon: ScrollText,
+    tone: "Malory, print, and literary legacy",
+    summary:
+      "In this final stage, Arthurian tradition is gathered, shaped, and printed into one of the most influential works in English literary history.",
+    details: [
+      {
+        year: "c. 1420",
+        title: "The earliest surviving Paston letter is written",
+        category: "Literary Milestones",
+        description:
+          "The Paston Letters reveal everyday life, language, and social concerns in late medieval England, helping us understand Malory's world.",
+      },
+      {
+        year: "1431",
+        title: "Joan of Arc is burned at the stake",
+        category: "World Culture and Events",
+        description:
+          "Joan's death reflects the intertwining of faith, war, and political legitimacy in the fifteenth century.",
+      },
+      {
+        year: "1453",
+        title: "Ottomans conquer Constantinople",
+        category: "World Culture and Events",
+        description:
+          "The fall of Constantinople marks a world-historical transition, symbolizing the end of one age and the transformation of another.",
+      },
+      {
+        year: "c. 1450",
+        title: "Modern English begins to develop from Middle English",
+        category: "Historical Context",
+        description:
+          "Language was changing rapidly in Malory's lifetime, and his work stands near a major turning point in English literary expression.",
+      },
+      {
+        year: "c. 1455",
+        title: "Gutenberg Bible is printed in Germany",
+        category: "World Culture and Events",
+        description:
+          "Movable type revolutionized the spread of texts. Without print culture, Malory's work would not have reached later generations in the same way.",
+      },
+      {
+        year: "c. 1476",
+        title: "William Caxton establishes the first printing press in England",
+        category: "Historical Context",
+        description:
+          "Caxton helped transform literature from manuscript culture into print culture.",
+      },
+      {
+        year: "1477",
+        title: "First printed book in English is produced",
+        category: "Historical Context",
+        description:
+          "Printing accelerated the standardization and wider distribution of English literature.",
+      },
+      {
+        year: "1485",
+        title: "William Caxton prints Thomas Malory's Le Morte d'Arthur",
+        category: "Literary Milestones",
+        description:
+          "This moment secured Malory's Arthurian narrative as a lasting monument of English literature.",
+      },
     ],
-    people: ["William the Conqueror"],
-    sceneImage: "/images/norman-conquest-scene.jpg",
-    sceneLabel: "Norman Conquest imagery",
-  },
-  {
-    year: "1215",
-    title: "King John signs the Magna Carta",
-    category: "History",
-    description:
-      "The Magna Carta becomes a lasting symbol of the rule of law and limits on royal power.",
-    characteristics: [
-      "Limit on monarchy",
-      "Legal tradition",
-      "Symbol of constitutional development",
+    people: [
+      {
+        name: "Sir Thomas Malory",
+        role: "Author of Le Morte d'Arthur",
+        image: "/images/sir-thomas-malory.jpg",
+        description:
+          "Malory gathered many earlier Arthurian materials and reshaped them into a sweeping English prose narrative.",
+      },
+      {
+        name: "William Caxton",
+        role: "Printer and publisher",
+        image: "/images/william-caxton.jpg",
+        description:
+          "Caxton printed Le Morte d'Arthur in 1485 and played a decisive role in preserving and popularizing Malory's version of the Arthur story.",
+      },
+      {
+        name: "Joan of Arc",
+        role: "Military and religious heroine",
+        image: "/images/joan-of-arc.jpg",
+        description:
+          "Joan embodies medieval ideals of courage, holy mission, and tragic destiny.",
+      },
     ],
-    people: ["King John"],
-    sceneImage: "/images/magna-carta-scene.jpg",
-    sceneLabel: "Magna Carta",
-  },
-  {
-    year: "1375",
-    title: "Sir Gawain and the Green Knight is composed",
-    category: "Literature",
-    description:
-      "A major Middle English Arthurian poem exploring chivalry, testing, temptation, and honor.",
-    characteristics: [
-      "Arthurian romance",
-      "Moral testing",
-      "Courtly and symbolic narrative",
-    ],
-    people: ["Sir Gawain"],
-    sceneImage: "/images/arthurian-scene.jpg",
-    sceneLabel: "Arthurian manuscript art",
-  },
-  {
-    year: "1387",
-    title: "Chaucer begins The Canterbury Tales",
-    category: "Literature",
-    description:
-      "Chaucer's work becomes one of the greatest achievements of Middle English literature.",
-    characteristics: [
-      "Frame narrative structure",
-      "Social diversity of characters",
-      "Middle English literary mastery",
-    ],
-    people: ["Chaucer"],
-    sceneImage: "/images/arthurian-scene.jpg",
-    sceneLabel: "Canterbury Tales pilgrims",
-  },
-  {
-    year: "1485",
-    title: "Caxton prints Le Morte d'Arthur",
-    category: "Literature",
-    description:
-      "William Caxton prints Thomas Malory's Le Morte d'Arthur, helping establish the Arthurian tradition in English print culture.",
-    characteristics: [
-      "Arthurian legend in print",
-      "Transition from manuscript to print culture",
-      "Rise, glory, and fall of Camelot",
-    ],
-    people: ["William Caxton", "Thomas Malory", "Arthur"],
-    sceneImage: "/images/caxton-scene.jpg",
-    sceneLabel: "Le Morte d'Arthur in print",
   },
 ];
 
-const pageStyle = {
-  minHeight: "100vh",
-  background:
-    "radial-gradient(circle at top, #fff7e7 0%, #f1e5cf 42%, #e7d6b7 100%)",
-  color: "#2e2417",
-  fontFamily: "Georgia, 'Times New Roman', serif",
+const categoryColors = {
+  "Literary Milestones": "#d6b04d",
+  "Historical Context": "#9a7a52",
+  "World Culture and Events": "#9b5a49",
 };
 
-const wrapStyle = {
-  maxWidth: "1440px",
-  margin: "0 auto",
-  padding: "40px 20px 56px",
-};
-
-const frameStyle = {
-  position: "relative",
-  border: "8px double #8c6a36",
-  borderRadius: "28px",
-  background: "rgba(255, 250, 240, 0.9)",
-  boxShadow:
-    "0 24px 70px rgba(75, 52, 22, 0.16), inset 0 0 0 2px rgba(255,255,255,0.55)",
-  overflow: "hidden",
-};
-
-const watermarkStyle = {
-  position: "absolute",
-  inset: 0,
-  pointerEvents: "none",
-  backgroundImage:
-    "radial-gradient(circle at 15% 18%, rgba(158,122,62,0.08) 0, rgba(158,122,62,0.08) 2px, transparent 2px), radial-gradient(circle at 85% 82%, rgba(158,122,62,0.06) 0, rgba(158,122,62,0.06) 2px, transparent 2px), linear-gradient(45deg, transparent 48%, rgba(170,135,74,0.035) 49%, rgba(170,135,74,0.035) 51%, transparent 52%), linear-gradient(-45deg, transparent 48%, rgba(170,135,74,0.03) 49%, rgba(170,135,74,0.03) 51%, transparent 52%)",
-  backgroundSize: "140px 140px, 180px 180px, 120px 120px, 120px 120px",
-  mixBlendMode: "multiply",
-};
-
-const cornerBase = {
-  position: "absolute",
-  width: "82px",
-  height: "82px",
-  pointerEvents: "none",
-  opacity: 0.7,
-};
-
-function getCategoryStyle(category) {
-  if (category === "History") {
-    return {
-      background: "#e9f1f8",
-      color: "#3b5f80",
-      border: "1px solid #b7cedf",
-    };
-  }
-  return {
-    background: "#f7ebdc",
-    color: "#815a2d",
-    border: "1px solid #d7bc95",
-  };
-}
-
-function useResponsive() {
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" ? window.innerWidth < 980 : false
-  );
-
-  useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 980);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  return isMobile;
-}
-
-function SafeImage({
-  src,
-  alt,
-  fallback,
-  style,
-  className,
-  minHeight,
-}) {
-  const [imgSrc, setImgSrc] = useState(src);
-
-  useEffect(() => {
-    setImgSrc(src);
-  }, [src]);
-
-  return (
-    <img
-      src={imgSrc}
-      alt={alt}
-      className={className}
-      onError={() => setImgSrc(fallback)}
-      style={{
-        ...style,
-        minHeight,
-      }}
-    />
-  );
-}
-
-function InlinePeople({ people, onOpen }) {
-  return people.map((person, index) => (
-    <React.Fragment key={person}>
-      <button
-        onClick={() => onOpen(person)}
-        style={{
-          border: "none",
-          background: "none",
-          padding: 0,
-          margin: 0,
-          color: "#7c5320",
-          fontFamily: "inherit",
-          fontSize: "inherit",
-          textDecoration: "underline",
-          textDecorationStyle: "dotted",
-          cursor: "pointer",
-          fontWeight: 700,
-        }}
-      >
-        {person}
-      </button>
-      {index < people.length - 1 ? ", " : ""}
-    </React.Fragment>
-  ));
-}
-
-function CharacterModal({ person, onClose, isMobile }) {
+function Modal({ person, onClose }) {
   if (!person) return null;
 
   return (
-    <div
-      onClick={onClose}
-      style={{
-        position: "fixed",
-        inset: 0,
-        background: "rgba(32, 20, 7, 0.58)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "20px",
-        zIndex: 100,
-      }}
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          width: "min(980px, 100%)",
-          borderRadius: "28px",
-          overflow: "hidden",
-          border: "4px double #8c6a36",
-          background: "linear-gradient(180deg, #fffaf0 0%, #f4e8cf 100%)",
-          boxShadow: "0 24px 70px rgba(0,0,0,0.26)",
-          display: "grid",
-          gridTemplateColumns: isMobile ? "1fr" : "340px 1fr",
-        }}
-      >
-        <div
-          style={{
-            background: "#e8dcc2",
-            minHeight: isMobile ? "240px" : "100%",
-          }}
-        >
-          <SafeImage
-            src={person.image}
-            alt={person.name}
-            fallback="/images/fallback-portrait.jpg"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
-          />
-        </div>
-
-        <div style={{ padding: isMobile ? "22px" : "30px 30px 26px" }}>
-          <div
-            style={{
-              fontSize: isMobile ? "30px" : "38px",
-              color: "#3b2810",
-              fontWeight: 700,
-              lineHeight: 1.15,
-            }}
-          >
-            {person.name}
+    <div style={styles.modalOverlay} onClick={onClose}>
+      <div style={styles.modalCard} onClick={(e) => e.stopPropagation()}>
+        <button style={styles.closeBtn} onClick={onClose}>
+          <X size={20} />
+        </button>
+        <div style={styles.modalGrid}>
+          <div style={styles.modalImageWrap}>
+            <img src={person.image} alt={person.name} style={styles.modalImage} />
           </div>
-
-          <div
-            style={{
-              marginTop: "8px",
-              color: "#8b6734",
-              fontStyle: "italic",
-              fontSize: isMobile ? "17px" : "19px",
-            }}
-          >
-            {person.subtitle}
+          <div style={styles.modalContent}>
+            <h2 style={styles.modalTitle}>{person.name}</h2>
+            <p style={styles.modalRole}>{person.role}</p>
+            <p style={styles.modalDesc}>{person.description}</p>
           </div>
-
-          <div
-            style={{
-              height: "1px",
-              width: "100%",
-              background:
-                "linear-gradient(90deg, transparent, rgba(140,106,54,0.38), transparent)",
-              margin: "18px 0 22px",
-            }}
-          />
-
-          <p
-            style={{
-              margin: 0,
-              color: "#5a472a",
-              fontSize: isMobile ? "16px" : "18px",
-              lineHeight: 1.9,
-            }}
-          >
-            {person.description}
-          </p>
-
-          <button
-            onClick={onClose}
-            style={{
-              marginTop: "24px",
-              padding: "10px 16px",
-              borderRadius: "999px",
-              border: "1px solid #b8965c",
-              background: "#fff6e2",
-              color: "#7b5a28",
-              fontFamily: "inherit",
-              fontSize: "15px",
-              cursor: "pointer",
-            }}
-          >
-            Close
-          </button>
         </div>
       </div>
     </div>
@@ -460,585 +538,538 @@ function CharacterModal({ person, onClose, isMobile }) {
 }
 
 export default function App() {
-  const [selectedItem, setSelectedItem] = useState(
-    timelineData[timelineData.length - 1]
-  );
+  const [selectedEra, setSelectedEra] = useState(timelineData[0]);
+  const [selectedEvent, setSelectedEvent] = useState(timelineData[0].details[0]);
   const [selectedPerson, setSelectedPerson] = useState(null);
-  const isMobile = useResponsive();
+
+  const currentEvents = useMemo(() => selectedEra.details, [selectedEra]);
 
   return (
-    <div style={pageStyle}>
-      <div style={wrapStyle}>
-        <div style={frameStyle}>
-          <div style={watermarkStyle} />
+    <div style={styles.page}>
+      <div style={styles.overlay} />
+      <div style={styles.container}>
+        <img src="/images/medieval-seal.png" alt="" style={styles.seal} />
 
-          <div
-            style={{
-              ...cornerBase,
-              top: 12,
-              left: 12,
-              borderTop: "5px solid #8c6a36",
-              borderLeft: "5px solid #8c6a36",
-              borderTopLeftRadius: "14px",
-            }}
-          />
-          <div
-            style={{
-              ...cornerBase,
-              top: 12,
-              right: 12,
-              borderTop: "5px solid #8c6a36",
-              borderRight: "5px solid #8c6a36",
-              borderTopRightRadius: "14px",
-            }}
-          />
-          <div
-            style={{
-              ...cornerBase,
-              bottom: 48,
-              left: 12,
-              borderBottom: "5px solid #8c6a36",
-              borderLeft: "5px solid #8c6a36",
-              borderBottomLeftRadius: "14px",
-            }}
-          />
-          <div
-            style={{
-              ...cornerBase,
-              bottom: 48,
-              right: 12,
-              borderBottom: "5px solid #8c6a36",
-              borderRight: "5px solid #8c6a36",
-              borderBottomRightRadius: "14px",
-            }}
-          />
+        <header style={styles.header}>
+          <div style={styles.badge}>
+            <Sparkles size={14} />
+            <span>Medieval Literary Experience</span>
+          </div>
+          <h1 style={styles.title}>A Timeline of Le Morte d'Arthur</h1>
+          <p style={styles.subtitle}>
+            Connecting Literature, History, and Culture
+          </p>
+          <p style={styles.author}>12C Esther Jung</p>
+        </header>
 
-          <section
-            style={{
-              position: "relative",
-              padding: "44px 32px 28px",
-              background:
-                "linear-gradient(180deg, rgba(120,78,28,0.12) 0%, rgba(255,248,232,0.6) 100%)",
-              borderBottom: "1px solid rgba(140,106,54,0.28)",
-              textAlign: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "16px",
-                justifyContent: "center",
-                marginBottom: "12px",
-                color: "#8c6a36",
-              }}
-            >
-              <div
-                style={{
-                  width: "90px",
-                  height: "1px",
-                  background:
-                    "linear-gradient(90deg, transparent, #9c7b48, transparent)",
-                }}
-              />
-              <div style={{ fontSize: "20px" }}>✦</div>
-              <div
-                style={{
-                  width: "90px",
-                  height: "1px",
-                  background:
-                    "linear-gradient(90deg, transparent, #9c7b48, transparent)",
-                }}
-              />
-            </div>
-
-            <h1
-              style={{
-                margin: 0,
-                fontSize: isMobile ? "34px" : "54px",
-                lineHeight: 1.08,
-                color: "#3f2d14",
-                letterSpacing: "0.02em",
-              }}
-            >
-              Le Morte d'Arthur TimeLine
-            </h1>
-
-            <div
-              style={{
-                marginTop: "12px",
-                fontSize: isMobile ? "18px" : "22px",
-                color: "#6f5733",
-                fontStyle: "italic",
-              }}
-            >
-              12C Dahee Jung
-            </div>
-
-            <div
-              style={{
-                display: "inline-block",
-                marginTop: "14px",
-                padding: "6px 14px",
-                borderRadius: "999px",
-                border: "1px solid #c9ae7b",
-                background: "rgba(255, 246, 225, 0.95)",
-                color: "#7a5c2c",
-                fontSize: "13px",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-              }}
-            >
-              Literature · History · Arthurian World
-            </div>
-          </section>
-
-          <section style={{ padding: isMobile ? "24px 18px 18px" : "32px 28px 24px" }}>
-            <div
-              style={{
-                marginBottom: "18px",
-                color: "#6a5638",
-                lineHeight: 1.75,
-                fontSize: isMobile ? "15px" : "16px",
-                textAlign: "center",
-              }}
-            >
-              Select a year on the manuscript line below. Each marker opens a
-              period image, event overview, characteristics, and related
-              historical or literary figures.
-            </div>
-
-            <div style={{ position: "relative", overflowX: "auto", paddingBottom: "10px" }}>
-              <div
-                style={{
-                  minWidth: isMobile ? "1180px" : "1480px",
-                  padding: "18px 12px 8px",
-                  position: "relative",
-                }}
-              >
-                <div
+        <section style={styles.timelineSection}>
+          <div style={styles.timelineLine} />
+          <div style={styles.eraRow}>
+            {timelineData.map((era) => {
+              const Icon = era.icon;
+              const active = selectedEra.era === era.era;
+              return (
+                <button
+                  key={era.era}
                   style={{
-                    position: "absolute",
-                    top: "92px",
-                    left: "40px",
-                    right: "40px",
-                    height: "6px",
-                    borderRadius: "999px",
-                    background:
-                      "linear-gradient(90deg, #c6a566 0%, #8f6d37 50%, #c6a566 100%)",
-                    boxShadow: "0 0 0 6px rgba(198,165,102,0.10)",
+                    ...styles.eraButton,
+                    ...(active ? styles.eraButtonActive : {}),
                   }}
-                />
-
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: `repeat(${timelineData.length}, minmax(130px, 1fr))`,
-                    gap: "16px",
-                    alignItems: "start",
-                    position: "relative",
-                    zIndex: 1,
+                  onClick={() => {
+                    setSelectedEra(era);
+                    setSelectedEvent(era.details[0]);
                   }}
                 >
-                  {timelineData.map((item, index) => {
-                    const active = selectedItem.year === item.year;
-                    const topCard = index % 2 === 0;
-
-                    return (
-                      <div
-                        key={item.year}
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                          minHeight: "250px",
-                          padding: "0 4px",
-                        }}
-                      >
-                        <div
-                          style={{
-                            height: "88px",
-                            width: "124px",
-                            display: "flex",
-                            alignItems: "flex-end",
-                            justifyContent: "center",
-                            marginBottom: "8px",
-                            textAlign: "center",
-                            color: active ? "#4a3419" : "#7b6645",
-                            fontSize: "12px",
-                            lineHeight: 1.35,
-                            fontWeight: 700,
-                            wordBreak: "keep-all",
-                            overflowWrap: "break-word",
-                            padding: "0 6px",
-                          }}
-                        >
-                          {topCard ? item.title : ""}
-                        </div>
-
-                        <button
-                          onClick={() => setSelectedItem(item)}
-                          style={{
-                            width: active ? "78px" : "68px",
-                            height: active ? "78px" : "68px",
-                            borderRadius: "999px",
-                            border: active
-                              ? "3px solid #8d692f"
-                              : "2px solid #c9aa72",
-                            background: active
-                              ? "radial-gradient(circle at 30% 30%, #b48a46 0%, #7b5925 75%)"
-                              : "radial-gradient(circle at 30% 30%, #fffaf0 0%, #f0dfbe 100%)",
-                            color: active ? "#fff8eb" : "#7b5b28",
-                            fontSize: active ? "18px" : "16px",
-                            fontWeight: 700,
-                            cursor: "pointer",
-                            boxShadow: active
-                              ? "0 14px 28px rgba(98, 67, 28, 0.28)"
-                              : "0 8px 18px rgba(98, 67, 28, 0.12)",
-                            transition: "all 0.18s ease",
-                            letterSpacing: "0.02em",
-                            position: "relative",
-                            zIndex: 2,
-                            flexShrink: 0,
-                          }}
-                        >
-                          {item.year}
-                        </button>
-
-                        <div
-                          style={{
-                            width: "2px",
-                            height: "46px",
-                            background: active
-                              ? "#8d692f"
-                              : "rgba(140,106,54,0.45)",
-                            margin: "10px 0",
-                          }}
-                        />
-
-                        <div
-                          style={{
-                            height: "88px",
-                            width: "124px",
-                            display: "flex",
-                            alignItems: "flex-start",
-                            justifyContent: "center",
-                            textAlign: "center",
-                            color: active ? "#4a3419" : "#7b6645",
-                            fontSize: "12px",
-                            lineHeight: 1.35,
-                            fontWeight: 700,
-                            wordBreak: "keep-all",
-                            overflowWrap: "break-word",
-                            padding: "0 6px",
-                          }}
-                        >
-                          {!topCard ? item.title : ""}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section style={{ padding: isMobile ? "6px 18px 24px" : "8px 28px 28px" }}>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: isMobile ? "1fr" : "420px 1fr",
-                gap: "24px",
-                alignItems: "stretch",
-              }}
-            >
-              <div
-                style={{
-                  border: "1px solid rgba(146,111,58,0.22)",
-                  borderRadius: "26px",
-                  overflow: "hidden",
-                  background:
-                    "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(247,238,220,0.96) 100%)",
-                  boxShadow: "0 16px 38px rgba(80, 57, 25, 0.10)",
-                }}
-              >
-                <div
-                  style={{
-                    position: "relative",
-                    minHeight: isMobile ? "260px" : "100%",
-                  }}
-                >
-                  <SafeImage
-                    src={selectedItem.sceneImage}
-                    alt={selectedItem.sceneLabel}
-                    fallback="/images/fallback.jpg"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      display: "block",
-                    }}
-                    minHeight={isMobile ? "260px" : "100%"}
-                  />
-
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background:
-                        "linear-gradient(180deg, rgba(34,22,9,0.02) 0%, rgba(34,22,9,0.54) 100%)",
-                    }}
-                  />
-
-                  <div
-                    style={{
-                      position: "absolute",
-                      left: "18px",
-                      right: "18px",
-                      bottom: "16px",
-                      padding: "12px 14px",
-                      borderRadius: "16px",
-                      background: "rgba(255, 248, 232, 0.82)",
-                      border: "1px solid rgba(140,106,54,0.20)",
-                      color: "#5a472a",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontSize: "12px",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.08em",
-                        color: "#8c6a36",
-                        fontWeight: 700,
-                        marginBottom: "4px",
-                      }}
-                    >
-                      Period Image
-                    </div>
-                    <div
-                      style={{
-                        fontSize: "16px",
-                        lineHeight: 1.5,
-                        fontWeight: 700,
-                      }}
-                    >
-                      {selectedItem.sceneLabel}
-                    </div>
+                  <div style={styles.eraIconWrap}>
+                    <Icon size={24} />
                   </div>
-                </div>
+                  <div style={styles.eraLabel}>{era.era}</div>
+                  <div style={styles.eraTone}>{era.tone}</div>
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        <section style={styles.contentGrid}>
+          <div style={styles.leftPanel}>
+            <h2 style={styles.panelTitle}>{selectedEra.era}</h2>
+            <p style={styles.panelSummary}>{selectedEra.summary}</p>
+
+            <div style={{ marginTop: 28 }}>
+              <div style={styles.sectionLabel}>
+                <BookOpen size={16} />
+                <span>Related Figures</span>
               </div>
 
-              <div
-                style={{
-                  border: "1px solid rgba(146,111,58,0.22)",
-                  borderRadius: "26px",
-                  background:
-                    "linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(251,245,233,0.98) 100%)",
-                  boxShadow: "0 16px 38px rgba(80, 57, 25, 0.10)",
-                  overflow: "hidden",
-                }}
-              >
-                <div
-                  style={{
-                    padding: "26px 28px 18px",
-                    borderBottom: "1px solid rgba(146,111,58,0.16)",
-                    background:
-                      "linear-gradient(180deg, rgba(161,124,69,0.08) 0%, rgba(255,250,240,0.4) 100%)",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "start",
-                      gap: "16px",
-                      flexWrap: "wrap",
-                    }}
+              <div style={styles.peopleList}>
+                {selectedEra.people.map((person) => (
+                  <button
+                    key={person.name}
+                    style={styles.personCard}
+                    onClick={() => setSelectedPerson(person)}
                   >
                     <div>
-                      <div
-                        style={{
-                          fontSize: isMobile ? "44px" : "72px",
-                          lineHeight: 1,
-                          fontWeight: 700,
-                          color: "#3d2b12",
-                          textShadow: "0 2px 0 rgba(255,255,255,0.75)",
-                        }}
-                      >
-                        {selectedItem.year}
-                      </div>
-
-                      <div
-                        style={{
-                          marginTop: "6px",
-                          display: "inline-block",
-                          padding: "6px 12px",
-                          borderRadius: "999px",
-                          fontSize: "13px",
-                          fontWeight: 700,
-                          letterSpacing: "0.06em",
-                          textTransform: "uppercase",
-                          ...getCategoryStyle(selectedItem.category),
-                        }}
-                      >
-                        {selectedItem.category}
-                      </div>
+                      <div style={styles.personName}>{person.name}</div>
+                      <div style={styles.personRole}>{person.role}</div>
                     </div>
-
-                    <div
-                      style={{
-                        width: isMobile ? "100%" : "160px",
-                        minHeight: "110px",
-                        borderRadius: "22px",
-                        border: "1px solid rgba(146,111,58,0.18)",
-                        background:
-                          "radial-gradient(circle at top, rgba(189,150,86,0.28), rgba(255,247,231,0.8) 60%, rgba(234,220,193,0.7) 100%)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#8b6b37",
-                        fontSize: "42px",
-                      }}
-                    >
-                      ❦
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ padding: isMobile ? "22px" : "30px" }}>
-                  <h2
-                    style={{
-                      margin: "0 0 16px 0",
-                      fontSize: isMobile ? "28px" : "38px",
-                      lineHeight: 1.2,
-                      color: "#2f2212",
-                    }}
-                  >
-                    {selectedItem.title}
-                  </h2>
-
-                  <div
-                    style={{
-                      height: "1px",
-                      width: "100%",
-                      background:
-                        "linear-gradient(90deg, transparent, rgba(140,106,54,0.38), transparent)",
-                      margin: "18px 0 22px",
-                    }}
-                  />
-
-                  <p
-                    style={{
-                      margin: 0,
-                      fontSize: isMobile ? "18px" : "20px",
-                      lineHeight: 1.85,
-                      color: "#5a472a",
-                      maxWidth: "38em",
-                    }}
-                  >
-                    {selectedItem.description}
-                  </p>
-
-                  <div
-                    style={{
-                      marginTop: "26px",
-                      padding: isMobile ? "18px" : "20px 22px",
-                      borderRadius: "20px",
-                      border: "1px solid rgba(146,111,58,0.18)",
-                      background: "rgba(252,246,234,0.88)",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontSize: "13px",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.08em",
-                        color: "#8c6a36",
-                        marginBottom: "12px",
-                        fontWeight: 700,
-                      }}
-                    >
-                      Characteristics
-                    </div>
-
-                    <ul
-                      style={{
-                        margin: 0,
-                        paddingLeft: "22px",
-                        color: "#5a472a",
-                        lineHeight: 1.9,
-                        fontSize: isMobile ? "15px" : "17px",
-                      }}
-                    >
-                      {selectedItem.characteristics.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {selectedItem.people && selectedItem.people.length > 0 && (
-                    <div
-                      style={{
-                        marginTop: "20px",
-                        padding: isMobile ? "18px" : "20px 22px",
-                        borderRadius: "20px",
-                        border: "1px solid rgba(146,111,58,0.18)",
-                        background: "rgba(255,249,237,0.76)",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "13px",
-                          textTransform: "uppercase",
-                          letterSpacing: "0.08em",
-                          color: "#8c6a36",
-                          marginBottom: "10px",
-                          fontWeight: 700,
-                        }}
-                      >
-                        People
-                      </div>
-
-                      <div
-                        style={{
-                          fontSize: isMobile ? "15px" : "17px",
-                          lineHeight: 1.9,
-                          color: "#5a472a",
-                        }}
-                      >
-                        <InlinePeople
-                          people={selectedItem.people}
-                          onOpen={setSelectedPerson}
-                        />
-                      </div>
-                    </div>
-                  )}
-                </div>
+                    <div style={styles.viewTag}>View</div>
+                  </button>
+                ))}
               </div>
             </div>
-          </section>
+          </div>
 
-          <CharacterModal
-            person={selectedPerson ? characters[selectedPerson] : null}
-            onClose={() => setSelectedPerson(null)}
-            isMobile={isMobile}
-          />
+          <div style={styles.rightPanel}>
+            <h2 style={styles.panelTitle}>Events of the {selectedEra.era}</h2>
 
-          <footer
-            style={{
-              padding: "18px 24px 24px",
-              textAlign: "center",
-              borderTop: "1px solid rgba(140,106,54,0.18)",
-              background: "rgba(255, 248, 234, 0.72)",
-              color: "#7a6238",
-              fontSize: "14px",
-              letterSpacing: "0.04em",
-            }}
-          >
-            Esther Jung
-          </footer>
-        </div>
+            <div style={styles.eventsGrid}>
+              <div style={styles.eventsList}>
+                {currentEvents.map((event) => {
+                  const active =
+                    selectedEvent.year === event.year &&
+                    selectedEvent.title === event.title;
+
+                  return (
+                    <button
+                      key={`${event.year}-${event.title}`}
+                      style={{
+                        ...styles.eventButton,
+                        ...(active ? styles.eventButtonActive : {}),
+                      }}
+                      onClick={() => setSelectedEvent(event)}
+                    >
+                      <div style={styles.eventCategory}>{event.category}</div>
+                      <div style={styles.eventYear}>{event.year}</div>
+                      <div style={styles.eventTitle}>{event.title}</div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div style={styles.eventDetail}>
+                <div
+                  style={{
+                    ...styles.eventChip,
+                    backgroundColor:
+                      categoryColors[selectedEvent.category] || "#9a7a52",
+                  }}
+                >
+                  {selectedEvent.category}
+                </div>
+                <h3 style={styles.detailYear}>{selectedEvent.year}</h3>
+                <h4 style={styles.detailTitle}>{selectedEvent.title}</h4>
+                <p style={styles.detailDesc}>{selectedEvent.description}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer style={styles.footer}>Developed by Esther Jung</footer>
       </div>
+
+      <Modal person={selectedPerson} onClose={() => setSelectedPerson(null)} />
     </div>
   );
 }
+
+const styles = {
+  page: {
+    minHeight: "100vh",
+    background:
+      "linear-gradient(180deg, rgba(250,245,234,0.96), rgba(243,234,216,0.94), rgba(239,227,207,0.95))",
+    color: "#4f4232",
+    fontFamily: "'Georgia', 'Times New Roman', serif",
+    position: "relative",
+    overflow: "hidden",
+  },
+  overlay: {
+    position: "absolute",
+    inset: 0,
+    backgroundImage: "url('/images/parchment-bg.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    opacity: 0.18,
+    pointerEvents: "none",
+  },
+  container: {
+    position: "relative",
+    maxWidth: 1400,
+    margin: "0 auto",
+    padding: "40px 20px 24px",
+  },
+  seal: {
+    position: "absolute",
+    right: 18,
+    top: 18,
+    width: 88,
+    opacity: 0.18,
+    pointerEvents: "none",
+  },
+  header: {
+    textAlign: "center",
+    marginBottom: 40,
+  },
+  badge: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    padding: "8px 16px",
+    border: "1px solid rgba(168,129,69,0.35)",
+    borderRadius: 999,
+    color: "#9b7632",
+    background: "rgba(255, 250, 240, 0.9)",
+    fontSize: 12,
+    letterSpacing: "0.22em",
+    textTransform: "uppercase",
+    marginBottom: 18,
+    boxShadow: "0 4px 14px rgba(130, 106, 67, 0.08)",
+  },
+  title: {
+    fontSize: "clamp(2.2rem, 5vw, 4.5rem)",
+    color: "#5c4731",
+    margin: 0,
+  },
+  subtitle: {
+    marginTop: 12,
+    fontSize: 18,
+    color: "#7a6753",
+  },
+  author: {
+    marginTop: 10,
+    color: "#a07b2f",
+    letterSpacing: "0.18em",
+    fontSize: 14,
+  },
+  timelineSection: {
+    position: "relative",
+    marginBottom: 36,
+  },
+  timelineLine: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 52,
+    height: 3,
+    background:
+      "linear-gradient(90deg, transparent, rgba(196,159,94,0.95), transparent)",
+  },
+  eraRow: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+    gap: 16,
+    position: "relative",
+    zIndex: 2,
+  },
+  eraButton: {
+    border: "1px solid rgba(180,154,115,0.45)",
+    borderRadius: 24,
+    padding: 18,
+    background: "rgba(255, 251, 245, 0.96)",
+    color: "#5b4632",
+    cursor: "pointer",
+    textAlign: "center",
+    transition: "all 0.2s ease",
+    boxShadow: "0 8px 24px rgba(120, 102, 72, 0.10)",
+  },
+  eraButtonActive: {
+    border: "1px solid #c8a35f",
+    background:
+      "linear-gradient(180deg, rgba(247,236,210,0.98), rgba(239,227,203,0.98))",
+    transform: "translateY(-2px)",
+    boxShadow: "0 10px 24px rgba(157, 128, 77, 0.18)",
+  },
+  eraIconWrap: {
+    width: 52,
+    height: 52,
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: "0 auto 10px",
+    background: "rgba(247, 238, 221, 0.98)",
+    border: "1px solid rgba(194,157,91,0.45)",
+    color: "#8d6a2b",
+  },
+  eraLabel: {
+    fontSize: 24,
+    marginBottom: 4,
+  },
+  eraTone: {
+    fontSize: 12,
+    color: "#846f58",
+    lineHeight: 1.5,
+  },
+  contentGrid: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1.6fr",
+    gap: 24,
+  },
+  leftPanel: {
+    background: "rgba(255, 251, 244, 0.96)",
+    border: "1px solid rgba(180, 154, 115, 0.40)",
+    borderRadius: 28,
+    padding: 24,
+    boxShadow: "0 12px 32px rgba(120, 102, 72, 0.12)",
+    backdropFilter: "blur(2px)",
+  },
+  rightPanel: {
+    background: "rgba(255, 251, 244, 0.96)",
+    border: "1px solid rgba(180, 154, 115, 0.40)",
+    borderRadius: 28,
+    padding: 24,
+    boxShadow: "0 12px 32px rgba(120, 102, 72, 0.12)",
+    backdropFilter: "blur(2px)",
+  },
+  panelTitle: {
+    fontSize: 34,
+    color: "#5c4731",
+    margin: 0,
+    marginBottom: 12,
+  },
+  panelSummary: {
+    color: "#6f5d4a",
+    lineHeight: 1.9,
+    fontSize: 16,
+    background: "rgba(250, 244, 232, 0.95)",
+    border: "1px solid rgba(194,157,91,0.20)",
+    borderRadius: 18,
+    padding: 16,
+  },
+  sectionLabel: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    color: "#a07b2f",
+    fontSize: 13,
+    letterSpacing: "0.24em",
+    textTransform: "uppercase",
+    marginBottom: 12,
+  },
+  peopleList: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
+  },
+  personCard: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 16,
+    width: "100%",
+    background: "rgba(252, 248, 239, 0.98)",
+    border: "1px solid rgba(180,154,115,0.38)",
+    borderRadius: 18,
+    padding: 16,
+    cursor: "pointer",
+    color: "#4f4232",
+    textAlign: "left",
+  },
+  personName: {
+    fontSize: 22,
+    color: "#5c4731",
+  },
+  personRole: {
+    marginTop: 4,
+    fontSize: 14,
+    color: "#7f6b55",
+  },
+  viewTag: {
+    border: "1px solid rgba(194,157,91,0.40)",
+    borderRadius: 999,
+    padding: "6px 12px",
+    color: "#a07b2f",
+    fontSize: 12,
+    textTransform: "uppercase",
+    letterSpacing: "0.15em",
+    whiteSpace: "nowrap",
+    background: "#fffaf0",
+  },
+  eventsGrid: {
+    display: "grid",
+    gridTemplateColumns: "0.95fr 1.35fr",
+    gap: 18,
+  },
+  eventsList: {
+    maxHeight: 560,
+    overflowY: "auto",
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
+    paddingRight: 6,
+  },
+  eventButton: {
+    width: "100%",
+    textAlign: "left",
+    border: "1px solid rgba(180,154,115,0.38)",
+    borderRadius: 18,
+    padding: 16,
+    background: "rgba(252, 248, 239, 0.98)",
+    color: "#4f4232",
+    cursor: "pointer",
+  },
+  eventButtonActive: {
+    border: "1px solid #c8a35f",
+    background:
+      "linear-gradient(180deg, rgba(247,236,210,0.98), rgba(239,227,203,0.98))",
+  },
+  eventCategory: {
+    fontSize: 11,
+    color: "#a07b2f",
+    textTransform: "uppercase",
+    letterSpacing: "0.22em",
+  },
+  eventYear: {
+    fontSize: 30,
+    color: "#5c4731",
+    marginTop: 8,
+  },
+  eventTitle: {
+    fontSize: 14,
+    color: "#705d49",
+    marginTop: 6,
+    lineHeight: 1.6,
+  },
+  eventDetail: {
+    borderRadius: 26,
+    padding: 24,
+    background:
+      "linear-gradient(180deg, rgba(252,247,238,0.98), rgba(243,236,224,0.98))",
+    border: "1px solid rgba(194,157,91,0.24)",
+  },
+  eventChip: {
+    display: "inline-block",
+    color: "#fffdf8",
+    fontSize: 12,
+    letterSpacing: "0.12em",
+    textTransform: "uppercase",
+    padding: "8px 14px",
+    borderRadius: 999,
+    marginBottom: 18,
+  },
+  detailYear: {
+    fontSize: 56,
+    color: "#5c4731",
+    margin: 0,
+  },
+  detailTitle: {
+    fontSize: 34,
+    color: "#4f4232",
+    marginTop: 10,
+    marginBottom: 12,
+    lineHeight: 1.25,
+  },
+  detailDesc: {
+    color: "#6f5d4a",
+    fontSize: 17,
+    lineHeight: 1.9,
+  },
+  footer: {
+    marginTop: 34,
+    paddingTop: 18,
+    borderTop: "1px solid rgba(180,154,115,0.38)",
+    textAlign: "center",
+    color: "#a07b2f",
+    letterSpacing: "0.22em",
+    fontSize: 14,
+    textTransform: "uppercase",
+  },
+  modalOverlay: {
+    position: "fixed",
+    inset: 0,
+    background: "rgba(64, 49, 31, 0.35)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
+    zIndex: 9999,
+  },
+  modalCard: {
+    width: "min(920px, 100%)",
+    background:
+      "linear-gradient(180deg, rgba(255,251,244,0.99), rgba(246,238,226,0.99))",
+    border: "1px solid rgba(180,154,115,0.35)",
+    borderRadius: 28,
+    position: "relative",
+    overflow: "hidden",
+    boxShadow: "0 20px 50px rgba(120, 102, 72, 0.18)",
+  },
+  closeBtn: {
+    position: "absolute",
+    top: 14,
+    right: 14,
+    width: 40,
+    height: 40,
+    borderRadius: "50%",
+    border: "1px solid rgba(180,154,115,0.35)",
+    background: "rgba(250,244,232,0.98)",
+    color: "#6a5238",
+    cursor: "pointer",
+    zIndex: 2,
+  },
+  modalGrid: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1.2fr",
+  },
+  modalImageWrap: {
+    minHeight: 360,
+    background: "#f2e9da",
+  },
+  modalImage: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    display: "block",
+  },
+  modalContent: {
+    padding: "32px 28px 30px 28px",
+  },
+  modalTitle: {
+    margin: 0,
+    fontSize: 38,
+    color: "#5c4731",
+  },
+  modalRole: {
+    marginTop: 10,
+    color: "#a07b2f",
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    fontSize: 13,
+  },
+  modalDesc: {
+    marginTop: 24,
+    fontSize: 17,
+    lineHeight: 1.95,
+    color: "#6f5d4a",
+  },
+};
+
+const mediaStyle = document.createElement("style");
+mediaStyle.innerHTML = `
+  @media (max-width: 1100px) {
+    .timeline-responsive-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  @media (max-width: 980px) {
+    body {
+      overflow-x: hidden;
+    }
+  }
+
+  @media (max-width: 900px) {
+    div[style*="grid-template-columns: 1fr 1.6fr"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    div[style*="grid-template-columns: 0.95fr 1.35fr"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    div[style*="grid-template-columns: 1fr 1.2fr"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+`;
+document.head.appendChild(mediaStyle);
