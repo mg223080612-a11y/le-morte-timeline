@@ -1,75 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const characters = {
   "Bede the Venerable": {
     name: "Bede the Venerable",
     subtitle: "Scholar, monk, and historian",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Nuremberg_chronicles_f_98v_1_%28Beda%29.jpg/640px-Nuremberg_chronicles_f_98v_1_%28Beda%29.jpg",
+    image: "/images/bede-the-venerable.jpg",
     description:
       "Bede was one of the foundational scholars of early English Christianity. He helped shape historical writing, religious learning, and the intellectual world of Anglo-Saxon England.",
   },
   "Alfred the Great": {
     name: "Alfred the Great",
     subtitle: "King of Wessex",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Alfred_the_Great_silver_offer_coin_880.jpg/640px-Alfred_the_Great_silver_offer_coin_880.jpg",
+    image: "/images/alfred-the-great.jpg",
     description:
       "Alfred the Great defended his kingdom against Viking threats and promoted education, literacy, and Christian order. He became one of the most admired rulers in early English history.",
   },
   "William the Conqueror": {
     name: "William the Conqueror",
     subtitle: "Norman king of England",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Statue_of_William_the_Conqueror%2C_Falaise.jpg/640px-Statue_of_William_the_Conqueror%2C_Falaise.jpg",
+    image: "/images/william-the-conqueror.jpg",
     description:
       "William the Conqueror transformed England after the Norman Conquest of 1066. His victory reshaped politics, law, language, and aristocratic culture.",
   },
   "King John": {
     name: "King John",
     subtitle: "King of England",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/John_of_England.jpg/640px-John_of_England.jpg",
+    image: "/images/king-john.jpg",
     description:
       "King John is closely associated with the signing of Magna Carta in 1215. His reign became a turning point in debates over royal authority and legal restraint.",
   },
   "Sir Gawain": {
     name: "Sir Gawain",
     subtitle: "Knight of Arthurian romance",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Gawain_and_the_Green_Knight.jpg/640px-Gawain_and_the_Green_Knight.jpg",
+    image: "/images/sir-gawain.jpg",
     description:
       "Sir Gawain is one of the great knights of Arthurian tradition. In Sir Gawain and the Green Knight, he represents honor, testing, temptation, and moral struggle.",
   },
   Chaucer: {
     name: "Geoffrey Chaucer",
     subtitle: "Major poet of Middle English literature",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Geoffrey_Chaucer.jpg/640px-Geoffrey_Chaucer.jpg",
+    image: "/images/geoffrey-chaucer.jpg",
     description:
       "Geoffrey Chaucer is one of the central voices of Middle English literature. The Canterbury Tales presents a vivid range of characters, voices, and social settings.",
   },
   "William Caxton": {
     name: "William Caxton",
     subtitle: "England's first printer",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/William_Caxton.jpg/640px-William_Caxton.jpg",
+    image: "/images/william-caxton.jpg",
     description:
       "William Caxton established the first printing press in England and played a decisive role in circulating English literature in print.",
   },
   "Thomas Malory": {
     name: "Sir Thomas Malory",
     subtitle: "Author of Le Morte d'Arthur",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Caxton_Morte_dArthur.jpg/640px-Caxton_Morte_dArthur.jpg",
+    image: "/images/thomas-malory.jpg",
     description:
       "Thomas Malory gathered and reshaped Arthurian legend into one influential English prose narrative, helping define the later image of King Arthur and Camelot.",
   },
   Arthur: {
     name: "King Arthur",
     subtitle: "Legendary ruler of Camelot",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/King_Arthur.jpg/640px-King_Arthur.jpg",
+    image: "/images/arthur.jpg",
     description:
       "Arthur is the legendary king at the center of the Round Table tradition. He symbolizes royal authority, unity, and the tragic fall of an ideal kingdom.",
   },
@@ -88,8 +79,7 @@ const timelineData = [
       "Foundation for Old English society",
     ],
     people: [],
-    sceneImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Sutton_Hoo_helmet_2016.jpg/640px-Sutton_Hoo_helmet_2016.jpg",
+    sceneImage: "/images/anglo-saxon-scene.jpg",
     sceneLabel: "Anglo-Saxon culture",
   },
   {
@@ -104,8 +94,7 @@ const timelineData = [
       "Growth of literacy and monastic culture",
     ],
     people: [],
-    sceneImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Canterbury_Cathedral_-_Portal_Nave_Cross_Spire.jpg/640px-Canterbury_Cathedral_-_Portal_Nave_Cross_Spire.jpg",
+    sceneImage: "/images/bede-scene.jpg",
     sceneLabel: "Christian England",
   },
   {
@@ -120,8 +109,7 @@ const timelineData = [
       "Religious and intellectual authority",
     ],
     people: ["Bede the Venerable"],
-    sceneImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/St_Cuthbert_Gospel_%28British_Library_Add_MS_89000%29.jpg/640px-St_Cuthbert_Gospel_%28British_Library_Add_MS_89000%29.jpg",
+    sceneImage: "/images/bede-scene.jpg",
     sceneLabel: "Monastic manuscript culture",
   },
   {
@@ -136,8 +124,7 @@ const timelineData = [
       "Warrior ethos and fame",
     ],
     people: [],
-    sceneImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Beowulf_Cotton_MS_Vitellius_A_XV_f._132r.jpg/640px-Beowulf_Cotton_MS_Vitellius_A_XV_f._132r.jpg",
+    sceneImage: "/images/beowulf-scene.jpg",
     sceneLabel: "Beowulf manuscript",
   },
   {
@@ -152,8 +139,7 @@ const timelineData = [
       "Promotion of education and faith",
     ],
     people: ["Alfred the Great"],
-    sceneImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Statue_of_Alfred_the_Great%2C_Wantage.jpg/640px-Statue_of_Alfred_the_Great%2C_Wantage.jpg",
+    sceneImage: "/images/alfred-scene.jpg",
     sceneLabel: "Alfredian kingship",
   },
   {
@@ -168,8 +154,7 @@ const timelineData = [
       "Long-term linguistic change",
     ],
     people: ["William the Conqueror"],
-    sceneImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Bayeux_Tapestry_scene57_Harold_death.jpg/640px-Bayeux_Tapestry_scene57_Harold_death.jpg",
+    sceneImage: "/images/norman-conquest-scene.jpg",
     sceneLabel: "Norman Conquest imagery",
   },
   {
@@ -184,8 +169,7 @@ const timelineData = [
       "Symbol of constitutional development",
     ],
     people: ["King John"],
-    sceneImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Magna_Carta_%28British_Library_Cotton_MS_Augustus_II.106%29.jpg/640px-Magna_Carta_%28British_Library_Cotton_MS_Augustus_II.106%29.jpg",
+    sceneImage: "/images/magna-carta-scene.jpg",
     sceneLabel: "Magna Carta",
   },
   {
@@ -200,8 +184,7 @@ const timelineData = [
       "Courtly and symbolic narrative",
     ],
     people: ["Sir Gawain"],
-    sceneImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Gawain_Green_Knight_14th_cotton_nero.jpg/640px-Gawain_Green_Knight_14th_cotton_nero.jpg",
+    sceneImage: "/images/arthurian-scene.jpg",
     sceneLabel: "Arthurian manuscript art",
   },
   {
@@ -216,8 +199,7 @@ const timelineData = [
       "Middle English literary mastery",
     ],
     people: ["Chaucer"],
-    sceneImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Canterbury_Tales_2.jpg/640px-Canterbury_Tales_2.jpg",
+    sceneImage: "/images/arthurian-scene.jpg",
     sceneLabel: "Canterbury Tales pilgrims",
   },
   {
@@ -232,8 +214,7 @@ const timelineData = [
       "Rise, glory, and fall of Camelot",
     ],
     people: ["William Caxton", "Thomas Malory", "Arthur"],
-    sceneImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Caxton_Morte_dArthur.jpg/640px-Caxton_Morte_dArthur.jpg",
+    sceneImage: "/images/caxton-scene.jpg",
     sceneLabel: "Le Morte d'Arthur in print",
   },
 ];
@@ -247,7 +228,7 @@ const pageStyle = {
 };
 
 const wrapStyle = {
-  maxWidth: "1380px",
+  maxWidth: "1440px",
   margin: "0 auto",
   padding: "40px 20px 56px",
 };
@@ -296,8 +277,45 @@ function getCategoryStyle(category) {
 }
 
 function useResponsive() {
-  if (typeof window === "undefined") return false;
-  return window.innerWidth < 980;
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 980 : false
+  );
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 980);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  return isMobile;
+}
+
+function SafeImage({
+  src,
+  alt,
+  fallback,
+  style,
+  className,
+  minHeight,
+}) {
+  const [imgSrc, setImgSrc] = useState(src);
+
+  useEffect(() => {
+    setImgSrc(src);
+  }, [src]);
+
+  return (
+    <img
+      src={imgSrc}
+      alt={alt}
+      className={className}
+      onError={() => setImgSrc(fallback)}
+      style={{
+        ...style,
+        minHeight,
+      }}
+    />
+  );
 }
 
 function InlinePeople({ people, onOpen }) {
@@ -328,6 +346,7 @@ function InlinePeople({ people, onOpen }) {
 
 function CharacterModal({ person, onClose, isMobile }) {
   if (!person) return null;
+
   return (
     <div
       onClick={onClose}
@@ -361,9 +380,10 @@ function CharacterModal({ person, onClose, isMobile }) {
             minHeight: isMobile ? "240px" : "100%",
           }}
         >
-          <img
+          <SafeImage
             src={person.image}
             alt={person.name}
+            fallback="/images/fallback-portrait.jpg"
             style={{
               width: "100%",
               height: "100%",
@@ -372,6 +392,7 @@ function CharacterModal({ person, onClose, isMobile }) {
             }}
           />
         </div>
+
         <div style={{ padding: isMobile ? "22px" : "30px 30px 26px" }}>
           <div
             style={{
@@ -383,6 +404,7 @@ function CharacterModal({ person, onClose, isMobile }) {
           >
             {person.name}
           </div>
+
           <div
             style={{
               marginTop: "8px",
@@ -393,6 +415,7 @@ function CharacterModal({ person, onClose, isMobile }) {
           >
             {person.subtitle}
           </div>
+
           <div
             style={{
               height: "1px",
@@ -402,6 +425,7 @@ function CharacterModal({ person, onClose, isMobile }) {
               margin: "18px 0 22px",
             }}
           />
+
           <p
             style={{
               margin: 0,
@@ -412,6 +436,7 @@ function CharacterModal({ person, onClose, isMobile }) {
           >
             {person.description}
           </p>
+
           <button
             onClick={onClose}
             style={{
@@ -446,6 +471,7 @@ export default function App() {
       <div style={wrapStyle}>
         <div style={frameStyle}>
           <div style={watermarkStyle} />
+
           <div
             style={{
               ...cornerBase,
@@ -525,17 +551,19 @@ export default function App() {
                 }}
               />
             </div>
+
             <h1
               style={{
                 margin: 0,
-                fontSize: isMobile ? "36px" : "56px",
+                fontSize: isMobile ? "34px" : "54px",
                 lineHeight: 1.08,
                 color: "#3f2d14",
                 letterSpacing: "0.02em",
               }}
             >
-              A Medieval Horizontal Timeline
+              Le Morte d'Arthur TimeLine
             </h1>
+
             <div
               style={{
                 marginTop: "12px",
@@ -544,9 +572,9 @@ export default function App() {
                 fontStyle: "italic",
               }}
             >
-              A vertical arrangement of years across a horizontal manuscript
-              gallery
+              12C Dahee Jung
             </div>
+
             <div
               style={{
                 display: "inline-block",
@@ -583,7 +611,7 @@ export default function App() {
             <div style={{ position: "relative", overflowX: "auto", paddingBottom: "10px" }}>
               <div
                 style={{
-                  minWidth: isMobile ? "980px" : "1180px",
+                  minWidth: isMobile ? "1180px" : "1480px",
                   padding: "18px 12px 8px",
                   position: "relative",
                 }}
@@ -591,7 +619,7 @@ export default function App() {
                 <div
                   style={{
                     position: "absolute",
-                    top: "78px",
+                    top: "92px",
                     left: "40px",
                     right: "40px",
                     height: "6px",
@@ -605,7 +633,7 @@ export default function App() {
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: `repeat(${timelineData.length}, minmax(96px, 1fr))`,
+                    gridTemplateColumns: `repeat(${timelineData.length}, minmax(130px, 1fr))`,
                     gap: "16px",
                     alignItems: "start",
                     position: "relative",
@@ -623,22 +651,26 @@ export default function App() {
                           display: "flex",
                           flexDirection: "column",
                           alignItems: "center",
-                          minHeight: "210px",
+                          minHeight: "250px",
+                          padding: "0 4px",
                         }}
                       >
                         <div
                           style={{
-                            height: "64px",
+                            height: "88px",
+                            width: "124px",
                             display: "flex",
-                            alignItems: topCard ? "flex-end" : "flex-start",
+                            alignItems: "flex-end",
                             justifyContent: "center",
-                            marginBottom: "10px",
+                            marginBottom: "8px",
                             textAlign: "center",
                             color: active ? "#4a3419" : "#7b6645",
-                            fontSize: "13px",
-                            lineHeight: 1.3,
-                            fontWeight: 600,
-                            maxWidth: "106px",
+                            fontSize: "12px",
+                            lineHeight: 1.35,
+                            fontWeight: 700,
+                            wordBreak: "keep-all",
+                            overflowWrap: "break-word",
+                            padding: "0 6px",
                           }}
                         >
                           {topCard ? item.title : ""}
@@ -676,7 +708,7 @@ export default function App() {
                         <div
                           style={{
                             width: "2px",
-                            height: "48px",
+                            height: "46px",
                             background: active
                               ? "#8d692f"
                               : "rgba(140,106,54,0.45)",
@@ -686,16 +718,19 @@ export default function App() {
 
                         <div
                           style={{
-                            height: "64px",
+                            height: "88px",
+                            width: "124px",
                             display: "flex",
-                            alignItems: topCard ? "flex-start" : "flex-end",
+                            alignItems: "flex-start",
                             justifyContent: "center",
                             textAlign: "center",
                             color: active ? "#4a3419" : "#7b6645",
-                            fontSize: "13px",
-                            lineHeight: 1.3,
-                            fontWeight: 600,
-                            maxWidth: "106px",
+                            fontSize: "12px",
+                            lineHeight: 1.35,
+                            fontWeight: 700,
+                            wordBreak: "keep-all",
+                            overflowWrap: "break-word",
+                            padding: "0 6px",
                           }}
                         >
                           {!topCard ? item.title : ""}
@@ -733,17 +768,19 @@ export default function App() {
                     minHeight: isMobile ? "260px" : "100%",
                   }}
                 >
-                  <img
+                  <SafeImage
                     src={selectedItem.sceneImage}
                     alt={selectedItem.sceneLabel}
+                    fallback="/images/fallback.jpg"
                     style={{
                       width: "100%",
                       height: "100%",
-                      minHeight: isMobile ? "260px" : "100%",
                       objectFit: "cover",
                       display: "block",
                     }}
+                    minHeight={isMobile ? "260px" : "100%"}
                   />
+
                   <div
                     style={{
                       position: "absolute",
@@ -752,6 +789,7 @@ export default function App() {
                         "linear-gradient(180deg, rgba(34,22,9,0.02) 0%, rgba(34,22,9,0.54) 100%)",
                     }}
                   />
+
                   <div
                     style={{
                       position: "absolute",
@@ -829,6 +867,7 @@ export default function App() {
                       >
                         {selectedItem.year}
                       </div>
+
                       <div
                         style={{
                           marginTop: "6px",
@@ -845,6 +884,7 @@ export default function App() {
                         {selectedItem.category}
                       </div>
                     </div>
+
                     <div
                       style={{
                         width: isMobile ? "100%" : "160px",
@@ -890,9 +930,10 @@ export default function App() {
                   <p
                     style={{
                       margin: 0,
-                      fontSize: isMobile ? "17px" : "19px",
-                      lineHeight: 1.95,
+                      fontSize: isMobile ? "18px" : "20px",
+                      lineHeight: 1.85,
                       color: "#5a472a",
+                      maxWidth: "38em",
                     }}
                   >
                     {selectedItem.description}
@@ -919,6 +960,7 @@ export default function App() {
                     >
                       Characteristics
                     </div>
+
                     <ul
                       style={{
                         margin: 0,
@@ -956,6 +998,7 @@ export default function App() {
                       >
                         People
                       </div>
+
                       <div
                         style={{
                           fontSize: isMobile ? "15px" : "17px",
@@ -992,7 +1035,7 @@ export default function App() {
               letterSpacing: "0.04em",
             }}
           >
-            Developed by Esther Jung
+            Esther Jung
           </footer>
         </div>
       </div>
