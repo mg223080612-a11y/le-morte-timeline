@@ -765,10 +765,10 @@ export default function App() {
         <header style={styles.header}>
           <div style={styles.badge}>
             <Sparkles size={14} />
-            <span>Medieval Literary Experience</span>
+            <span>British Literature</span>
           </div>
           <h1 style={styles.title}>A Timeline of Le Morte d&apos;Arthur</h1>
-          <p style={styles.subtitle}>Connecting Literature, History, and Culture</p>
+          <p style={styles.subtitle}>Le Morte d&apos;Arthur Primer</p>
           <p style={styles.author}>12C Esther Jung</p>
         </header>
 
