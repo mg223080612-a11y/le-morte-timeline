@@ -15,7 +15,7 @@ const timelineData = [
     era: "400s",
     icon: Castle,
     tone: "Origins and early Britain",
-    eraImage: "/images/era-400s.jpg",
+    eraImage: "/images/king-arthur.jpg",
     summary:
       "The legendary background of Arthurian Britain begins to take shape during the age of Anglo-Saxon migration and early post-Roman instability.",
     details: [
@@ -76,7 +76,7 @@ const timelineData = [
     era: "600s",
     icon: Church,
     tone: "Christian foundations and early learning",
-    eraImage: "/images/era-600s.jpg",
+    eraImage: "/images/augustine-of-canterbury.jpg",
     summary:
       "This era helps establish the religious and intellectual foundations that shaped later English literature and medieval views of kingship, virtue, and history.",
     details: [
@@ -144,7 +144,7 @@ const timelineData = [
     era: "800s",
     icon: Shield,
     tone: "Kingship, chronicles, and defense",
-    eraImage: "/images/era-800s.jpg",
+    eraImage: "/images/alfred-the-great.jpg",
     summary:
       "The age of Alfred and the Anglo-Saxon Chronicle reinforces themes of heroic leadership, literacy, and national memory that later echo in Arthurian tradition.",
     details: [
@@ -219,7 +219,7 @@ const timelineData = [
     era: "1000s",
     icon: Shield,
     tone: "Conquest, reform, and transformation",
-    eraImage: "/images/era-1000s.jpg",
+    eraImage: "/images/william-the-conqueror.jpg",
     summary:
       "This period changes England politically, linguistically, and culturally. The Norman Conquest especially sets the stage for the later development of Arthurian romance.",
     details: [
@@ -322,7 +322,7 @@ const timelineData = [
     era: "1200s",
     icon: Sword,
     tone: "Romance, law, and crisis",
-    eraImage: "/images/era-1200s.jpg",
+    eraImage: "/images/gawain-poet.jpg",
     summary:
       "This era develops the literary and political forms that feed directly into the world of knights, quests, courts, and national trauma later seen in Malory.",
     details: [
@@ -425,7 +425,7 @@ const timelineData = [
     era: "1400s",
     icon: ScrollText,
     tone: "Malory, print, and literary legacy",
-    eraImage: "/images/era-1400s.jpg",
+    eraImage: "/images/william-caxton.jpg",
     summary:
       "In this final stage, Arthurian tradition is gathered, shaped, and printed into one of the most influential works in English literary history.",
     details: [
@@ -518,6 +518,202 @@ const categoryColors = {
   "World Culture and Events": "#874d3f",
 };
 
+function renderSummary(selectedEra, openPerson, styles) {
+  switch (selectedEra.era) {
+    case "400s":
+      return (
+        <>
+          The legendary background of Arthurian Britain begins to take shape
+          around{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("King Arthur")}
+          >
+            King Arthur
+          </span>
+          , amid the instability associated with{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Vortigern")}
+          >
+            Vortigern
+          </span>
+          , and the resistance often linked with{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Ambrosius Aurelianus")}
+          >
+            Ambrosius Aurelianus
+          </span>
+          .
+        </>
+      );
+
+    case "600s":
+      return (
+        <>
+          This era helps establish the Christian and intellectual foundations of
+          medieval England through figures such as{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Augustine of Canterbury")}
+          >
+            Augustine of Canterbury
+          </span>{" "}
+          and the historian{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Bede")}
+          >
+            Bede
+          </span>
+          .
+        </>
+      );
+
+    case "800s":
+      return (
+        <>
+          The age of heroic kingship is represented by{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Alfred the Great")}
+          >
+            Alfred the Great
+          </span>
+          , while continental Christian rule is reflected in{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Charlemagne")}
+          >
+            Charlemagne
+          </span>
+          .
+        </>
+      );
+
+    case "1000s":
+      return (
+        <>
+          England is transformed by conquest and reform through figures such as{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("William the Conqueror")}
+          >
+            William the Conqueror
+          </span>
+          ,{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("King Harold II")}
+          >
+            King Harold II
+          </span>
+          ,{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Thomas Becket")}
+          >
+            Thomas Becket
+          </span>
+          , and{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Henry II")}
+          >
+            Henry II
+          </span>
+          .
+        </>
+      );
+
+    case "1200s":
+      return (
+        <>
+          The literary and political world of romance grows through the legacy
+          of{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("King John")}
+          >
+            King John
+          </span>
+          ,{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Edward I")}
+          >
+            Edward I
+          </span>
+          , the anonymous{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("The Gawain Poet")}
+          >
+            Gawain Poet
+          </span>
+          , and{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Geoffrey Chaucer")}
+          >
+            Geoffrey Chaucer
+          </span>
+          .
+        </>
+      );
+
+    case "1400s":
+      return (
+        <>
+          Arthurian legend reaches literary permanence through{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Sir Thomas Malory")}
+          >
+            Sir Thomas Malory
+          </span>{" "}
+          and the printer{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("William Caxton")}
+          >
+            William Caxton
+          </span>
+          , while the wider mood of the age is reflected by figures like{" "}
+          <span
+            className="inline-person-link"
+            style={styles.inlineLink}
+            onClick={() => openPerson("Joan of Arc")}
+          >
+            Joan of Arc
+          </span>
+          .
+        </>
+      );
+
+    default:
+      return selectedEra.summary;
+  }
+}
+
 function Modal({ person, onClose }) {
   if (!person) return null;
 
@@ -549,6 +745,16 @@ export default function App() {
   const [selectedPerson, setSelectedPerson] = useState(null);
 
   const currentEvents = useMemo(() => selectedEra.details, [selectedEra]);
+
+  const openPerson = (name) => {
+    for (const era of timelineData) {
+      const found = era.people.find((p) => p.name === name);
+      if (found) {
+        setSelectedPerson(found);
+        return;
+      }
+    }
+  };
 
   return (
     <div style={styles.page}>
@@ -605,7 +811,9 @@ export default function App() {
             />
 
             <h2 style={styles.panelTitle}>{selectedEra.era}</h2>
-            <p style={styles.panelSummary}>{selectedEra.summary}</p>
+            <p style={styles.panelSummary}>
+              {renderSummary(selectedEra, openPerson, styles)}
+            </p>
 
             <div style={{ marginTop: 28 }}>
               <div style={styles.sectionLabel}>
@@ -863,6 +1071,12 @@ const styles = {
     borderRadius: 18,
     padding: 16,
   },
+  inlineLink: {
+    color: "#7e5f27",
+    textDecoration: "underline",
+    cursor: "pointer",
+    fontWeight: 700,
+  },
   sectionLabel: {
     display: "flex",
     alignItems: "center",
@@ -1084,6 +1298,10 @@ const styles = {
 
 const mediaStyle = document.createElement("style");
 mediaStyle.innerHTML = `
+  .inline-person-link:hover {
+    opacity: 0.72;
+  }
+
   @media (max-width: 900px) {
     div[style*="grid-template-columns: 1fr 1.6fr"] {
       grid-template-columns: 1fr !important;
