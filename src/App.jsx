@@ -15,7 +15,7 @@ const timelineData = [
     era: "400s",
     icon: Castle,
     tone: "Origins and early Britain",
-    eraImage: "/images/king-arthur.jpg",
+    eraImage: "/images/era-400s.jpg",
     summary:
       "The legendary background of Arthurian Britain begins to take shape during the age of Anglo-Saxon migration and early post-Roman instability.",
     details: [
@@ -76,7 +76,7 @@ const timelineData = [
     era: "600s",
     icon: Church,
     tone: "Christian foundations and early learning",
-    eraImage: "/images/augustine-of-canterbury.jpg",
+    eraImage: "/images/era-600s.jpg",
     summary:
       "This era helps establish the religious and intellectual foundations that shaped later English literature and medieval views of kingship, virtue, and history.",
     details: [
@@ -144,7 +144,7 @@ const timelineData = [
     era: "800s",
     icon: Shield,
     tone: "Kingship, chronicles, and defense",
-    eraImage: "/images/alfred-the-great.jpg",
+    eraImage: "/images/era-800s.jpg",
     summary:
       "The age of Alfred and the Anglo-Saxon Chronicle reinforces themes of heroic leadership, literacy, and national memory that later echo in Arthurian tradition.",
     details: [
@@ -219,7 +219,7 @@ const timelineData = [
     era: "1000s",
     icon: Shield,
     tone: "Conquest, reform, and transformation",
-    eraImage: "/images/william-the-conqueror.jpg",
+    eraImage: "/images/era-1000s.jpg",
     summary:
       "This period changes England politically, linguistically, and culturally. The Norman Conquest especially sets the stage for the later development of Arthurian romance.",
     details: [
@@ -322,7 +322,7 @@ const timelineData = [
     era: "1200s",
     icon: Sword,
     tone: "Romance, law, and crisis",
-    eraImage: "/images/gawain-poet.jpg",
+    eraImage: "/images/era-1200s.jpg",
     summary:
       "This era develops the literary and political forms that feed directly into the world of knights, quests, courts, and national trauma later seen in Malory.",
     details: [
@@ -425,7 +425,7 @@ const timelineData = [
     era: "1400s",
     icon: ScrollText,
     tone: "Malory, print, and literary legacy",
-    eraImage: "/images/william-caxton.jpg",
+    eraImage: "/images/era-1400s.jpg",
     summary:
       "In this final stage, Arthurian tradition is gathered, shaped, and printed into one of the most influential works in English literary history.",
     details: [
